@@ -1,16 +1,34 @@
 <p class="text-xs-center">Zaloguj się</p>
-<form>
-  <div class="form-group">
-    <label for="email">Email</label>
+<div
+  class="alert alert-{{message.type}}"
+  *ngIf="message.text"
+>
+  {{message.text}}
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('login').invalid && form.get('login').touched}"
+  >
+    <label for="login">Login</label>
     <input
       type="text"
       class="form-control underlined"
-      id="email"
-      placeholder="Wpisz email"
-      formControlName="email"
+      id="login"
+      placeholder="Wpisz login"
+      formControlName="login"
     >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('login').invalid && form.get('login').touched"
+    >
+      <span *ngIf="form.get('login')['errors']['required']">Login is empty!</span>
+    </span>
   </div>
-  <div class="form-group">
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+  >
     <label for="password">Hasło</label>
     <input
       type="password"
@@ -19,13 +37,29 @@
       placeholder="Hasło"
       formControlName="password"
     >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('password').invalid && form.get('password').touched"
+    >
+      <span *ngIf="form.get('password')['errors']['required']">Password is empty!</span>
+      <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">Password must be more
+        {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
+        You put {{form.get('password')['errors']['minlength']['actualLength']}}.
+      </span>
+    </span>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-block btn-primary">LogIn </button>
+    <button
+      type="submit"
+      class="btn btn-block btn-primary"
+      [disabled]="form.invalid"
+    >
+      LogIn
+    </button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      Nie masz konta? <a href="#">Rejestracja!</a>
+      Nie masz konta? <a [routerLink]="'/registration'">Rejestracja!</a>
     </p>
   </div>
 </form>

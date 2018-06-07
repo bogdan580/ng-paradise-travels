@@ -1,47 +1,86 @@
 <p class="text-xs-center">Rejestracja</p>
-<form>
-  <div class="form-group">
-    <label for="email">Email</label>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="form-group"
+    [ngClass]="{'has-error': form.get('login').invalid && form.get('login').touched}"
+  >
+    <label for="login">Login</label>
     <input
       type="text"
       class="form-control underlined"
-      id="email"
-      placeholder="Wpisz email"
+      id="login"
+      placeholder="Wpisz login"
+      formControlName="login"
     >
+    <span
+      class="form-help-text"
+      *ngIf="form.get('login').invalid && form.get('login').touched"
+    >
+      <span *ngIf="form.get('login')['errors']['required']">Login is empty!</span>
+    </span>
   </div>
-  <div class="form-group has-error">
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+  >
     <label for="password">Hasło</label>
     <input
       type="password"
       class="form-control underlined"
       id="password"
       placeholder="Wpisz hasło"
+      formControlName="password"
     >
-    <span class="form-help-text">Error message.</span>
+
+    <span
+      class="form-help-text"
+      *ngIf="form.get('password').invalid && form.get('password').touched"
+    >
+      <span *ngIf="form.get('password')['errors']['required']">Password is empty!</span>
+      <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+        Password must be more
+        {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
+        You put {{form.get('password')['errors']['minlength']['actualLength']}}.
+      </span>
+    </span>
   </div>
-  <div class="form-group has-success">
-    <label for="name">Imię</label>
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('firstName').invalid && form.get('firstName').touched}"
+  >
+    <label for="firstName">Imię</label>
     <input
       type="text"
       class="form-control underlined"
-      id="name"
+      id="firstName"
       placeholder="Wpisz imię"
+      formControlName="firstName"
     >
-    <span class="form-help-text">Success message.</span>
+    <span class="form-help-text"
+          *ngIf="form.get('firstName').invalid && form.get('firstName').touched"
+    >
+      Name is empty!
+    </span>
   </div>
-  <div class="form-group">
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('agree').invalid && form.get('agree').touched}">
     <label for="agree">
-      <input class="checkbox" id="agree" type="checkbox">
+      <input
+        class="checkbox"
+        id="agree"
+        type="checkbox"
+        formControlName="agree"
+      >
       <span>Zgadzam się z polityką prywatności</span>
     </label>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-block btn-primary">Zarejestruj</button>
+    <button type="submit"
+            class="btn btn-block btn-primary"
+    >Zarejestruj</button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
       Masz konto?
-      <a href="#">
+      <a [routerLink]="'/login'">
         Zaloguj!
       </a>
     </p>
