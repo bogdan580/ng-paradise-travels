@@ -14,4 +14,8 @@ export class UsersService {
   getUserByLogin(login: string): Observable<User> {
       return this.http.get<User>(`http://localhost:3000/users?login=${login}`);
   }
+
+  createNewUser(user: User): Observable<User> {
+    return this.http.post<User>(`http://localhost:3000/users`, user) ;
+  }
 }

@@ -4,7 +4,19 @@
       "id": 1,
       "login": "bogdan580",
       "password": "12345678",
-      "firstName": "Администратор"
+      "firstName": "Admin"
+    },
+    {
+      "login": "tomek",
+      "password": "123456",
+      "firstName": "Tomek",
+      "id": 2
+    },
+    {
+      "login": "przemek",
+      "password": "123456",
+      "firstName": "Przemek",
+      "id": 3
     }
   ],
   "bill": {
