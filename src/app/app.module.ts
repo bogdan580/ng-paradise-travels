@@ -8,18 +8,22 @@ import {FormsModule} from '@angular/forms';
 import {UsersService} from './shared/services/users.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './shared/services/auth.service';
+import {SystemModule} from './system/system.module';
+import {SystemComponent} from './system/system.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SystemComponent
   ],
   imports: [
     BrowserModule,
     // FormsModule,
     HttpClientModule,
     AuthModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SystemModule
   ],
   providers: [UsersService, AuthService],
   bootstrap: [AppComponent]

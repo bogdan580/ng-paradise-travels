@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'login': new FormControl(null, [Validators.required]),
+      'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
       'firstName': new FormControl(null, [Validators.required]),
       'agree': new FormControl(false, [Validators.requiredTrue]),
@@ -41,5 +41,20 @@ export class RegistrationComponent implements OnInit {
         });
       });
   }
+
+  forbiddenLogins (control: FormControl): Promise<any> {
+    return new Promise((resolve, reject)  => {
+      this.userService.getUserByLogin(control.value)
+        .subscribe((user: User) => {
+          console.log(user);
+          if (user[0]) {
+            resolve({forbiddenLogin: true});
+          } else {
+            resolve(null);
+          }
+        });
+    });
+  }
+
 
 }

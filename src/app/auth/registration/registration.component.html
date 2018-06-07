@@ -17,6 +17,7 @@
       *ngIf="form.get('login').invalid && form.get('login').touched"
     >
       <span *ngIf="form.get('login')['errors']['required']">Login is empty!</span>
+      <span *ngIf="form.get('login')['errors']['forbiddenLogin']">Login exists!</span>
     </span>
   </div>
   <div class="form-group"
