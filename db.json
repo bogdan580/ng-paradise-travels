@@ -7,16 +7,10 @@
       "firstName": "Admin"
     },
     {
-      "login": "tomek",
-      "password": "123456",
-      "firstName": "Tomek",
-      "id": 2
-    },
-    {
-      "login": "przemek",
-      "password": "123456",
+      "login": "Raz",
+      "password": "dwadada",
       "firstName": "Przemek",
-      "id": 3
+      "id": 2
     }
   ],
   "bill": {
