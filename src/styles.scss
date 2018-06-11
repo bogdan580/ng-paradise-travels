@@ -128,17 +128,7 @@
   color: #8cde33;
   font-size: 13px
 }
-.text-xs-left {
-  text-align: left !important
-}
 
-.text-xs-right {
-  text-align: right !important
-}
-
-.text-xs-center {
-  text-align: center !important
-}
 .form-group.has-error span.has-error {
   color: #f44;
   font-size: 13px;
@@ -153,4 +143,16 @@
   color: #fe974b;
   font-size: 13px;
   display: block !important
+}
+
+.text-xs-left {
+  text-align: left !important
+}
+
+.text-xs-right {
+  text-align: right !important
+}
+
+.text-xs-center {
+  text-align: center !important
 }

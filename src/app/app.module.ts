@@ -10,14 +10,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './shared/services/auth.service';
 import {SystemModule} from './system/system.module';
 import {SystemComponent} from './system/system.component';
-import { MenuComponent } from './menu/menu.component';
+// import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SystemComponent,
-    MenuComponent
+   // MenuComponent
   ],
   imports: [
     BrowserModule,
