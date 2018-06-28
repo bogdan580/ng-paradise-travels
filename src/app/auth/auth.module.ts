@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 import { LoginComponent } from './login/login.component';
-import { RegistrationComponent } from './registration/registration.component';
+import { RegisterComponent } from './register/registration.component';
 import {AuthComponent} from './auth.component';
 import {AuthRoutingModule} from './auth-routing.module';
 import {SharedModule} from '../shared/shared.module';
@@ -11,7 +11,7 @@ import {SharedModule} from '../shared/shared.module';
 
   declarations: [
     LoginComponent,
-    RegistrationComponent,
+    RegisterComponent,
     AuthComponent
   ],
   imports: [
