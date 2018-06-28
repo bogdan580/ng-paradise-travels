@@ -11,6 +11,7 @@ import {AuthService} from './shared/services/auth.service';
 import {SystemModule} from './system/system.module';
 import {SystemComponent} from './system/system.component';
 import { HomeComponent } from './home/home.component';
+import { OffersComponent } from './offers/offers.component';
 // import { MenuComponent } from './menu/menu.component';
 
 
@@ -19,6 +20,7 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     SystemComponent,
     HomeComponent,
+    OffersComponent,
    // MenuComponent
   ],
   imports: [
