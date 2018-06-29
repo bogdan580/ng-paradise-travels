@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UsersService} from '../../shared/services/users.service';
+import {UsersService} from '../../shared/services/users/users.service';
 import {User} from '../../shared/models/user.model';
 import {Message} from '../../shared/models/message.model';
 import {AuthService} from '../../shared/services/auth.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+import {UserLoginResponseModel} from '../../shared/models/responseModels/userLoginResponse.model';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'wfm-login',
@@ -48,25 +50,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     const formData = this.form.value;
-    console.log('click');
-    this.usersService.getUserByLogin(formData.login)
-      .subscribe((user: User) => {
-        console.log(user);
-        if (user[0]) {
-          if (user[0].password === formData.password) {
-            this.message.text = '';
-            window.localStorage.setItem('user', JSON.stringify(user[0]));
-            this.authService.login();
-            // this.router.navigate(['']);
-          } else {
-            this.showMessage({
-              text: 'Hasło nie prawidlowe',
-              type: 'danger'
-            });
-          }
+
+    this.usersService.login(formData.login, formData.password)
+      .subscribe((userLoginResponseModel: UserLoginResponseModel) => {
+        if (userLoginResponseModel.result === true) {
+          this.authService.login();
+          this.router.navigate(['system']);
         } else {
           this.showMessage({
-            text: 'Nie ma takiego usera',
+            text: userLoginResponseModel.msg,
             type: 'danger'
           });
         }
