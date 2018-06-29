@@ -26,7 +26,14 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/script.min.js",
+              "src/assets/js/lightbox.min.js",
+              "src/assets/js/swiper.jquery.min.js",
+              "src/assets/bootstrap/js/bootstrap.min.js"
+
+            ]
           },
           "configurations": {
             "production": {
@@ -76,7 +83,13 @@
               "src/styles.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/script.min.js",
+              "src/assets/js/lightbox.min.js",
+              "src/assets/js/swiper.jquery.min.js",
+              "src/assets/bootstrap/js/bootstrap.min.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

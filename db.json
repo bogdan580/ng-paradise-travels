@@ -11,6 +11,12 @@
       "password": "dwadada",
       "firstName": "Przemek",
       "id": 2
+    },
+    {
+      "login": "nick",
+      "password": "12345678",
+      "firstName": "Nick",
+      "id": 3
     }
   ],
   "bill": {

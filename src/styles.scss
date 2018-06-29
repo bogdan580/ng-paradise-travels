@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+
 .auth {
   position: absolute;
   width: 100%;
@@ -62,14 +63,13 @@
     top: 0;
     -webkit-transform: inherit;
     transform: inherit;
-    margin: 0;
-    margin-bottom: 10px
+    margin: 0 0 10px
   }
-
   .auth-container .auth-content {
     padding: 30px 25px
   }
 }
+
 .logo {
   display: inline-block;
   width: 45px;
@@ -115,6 +115,7 @@
   bottom: 0;
   left: 34px
 }
+
 .form-group.has-error .form-help-text {
   color: #fb494d;
   font-size: 13px
@@ -155,4 +156,86 @@
 
 .text-xs-center {
   text-align: center !important
+}
+
+.footer-basic {
+  padding: 40px 0;
+  background-color: #fff;
+  color: #4b4c4d
+}
+
+.footer-basic ul {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 0
+}
+
+.footer-basic li {
+  padding: 0 10px
+}
+
+.footer-basic ul a {
+  color: inherit;
+  text-decoration: none;
+  opacity: .8
+}
+
+.footer-basic ul a:hover {
+  opacity: 1
+}
+
+.footer-basic .social {
+  text-align: center;
+  padding-bottom: 25px
+}
+
+.footer-basic .social > a {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin: 0 8px;
+  color: inherit;
+  opacity: .75
+}
+
+.footer-basic .social > a:hover {
+  opacity: .9
+}
+
+.footer-basic .copyright {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 0
+}
+
+.simple-slider .swiper-slide {
+  height: 500px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center
+}
+
+.simple-slider .swiper-button-next, .simple-slider .swiper-button-prev {
+  width: 50px;
+  margin-left: 20px;
+  margin-right: 20px
+}
+
+@media (max-width: 767px) {
+  .simple-slider .swiper-button-next, .simple-slider .swiper-button-prev {
+    display: none
+  }
+  .simple-slider .swiper-slide {
+    height: 360px
+  }
 }

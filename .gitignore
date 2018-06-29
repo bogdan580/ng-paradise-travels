@@ -7,7 +7,7 @@
 
 # dependencies
 /node_modules
-/design/export
+/design
 
 # IDEs and editors
 /.idea
