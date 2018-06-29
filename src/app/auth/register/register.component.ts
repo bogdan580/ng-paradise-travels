@@ -8,8 +8,8 @@ import {User} from '../../shared/models/user.model';
 
 @Component({
   selector: 'wfm-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.css']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
 

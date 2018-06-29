@@ -7,8 +7,17 @@ import { OffersPageComponent } from './offers-page/offers-page.component';
 import { OfferPageComponent } from './offer-page/offer-page.component';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, SystemRoutingModule],
-  exports: [CommonModule, SharedModule],
-  declarations: [HomePageComponent, OffersPageComponent, OfferPageComponent]
+  imports: [
+    CommonModule,
+    SharedModule,
+    SystemRoutingModule
+  ],
+  exports: [
+    CommonModule,
+    SharedModule],
+  declarations: [
+    HomePageComponent,
+    OffersPageComponent,
+    OfferPageComponent]
 })
 export class SystemModule {}
