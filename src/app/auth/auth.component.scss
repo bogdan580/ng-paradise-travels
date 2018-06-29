@@ -1,0 +1,152 @@
+.auth {
+  width: 100%;
+  height: 100%;
+  background-color: #667380;
+}
+
+.auth-container {
+  width: 450px;
+  min-height: 330px;
+  top: 50%;
+  left: 50%;
+margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-container .auth-header {
+  text-align: center;
+  border-bottom: 1px solid #52bcd3
+}
+
+.auth-container .auth-title {
+  color: #97a4b1;
+  padding: 20px;
+  line-height: 30px;
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0
+}
+
+.auth-container .auth-content {
+  padding: 30px 50px;
+  min-height: 260px
+}
+
+.auth-container .forgot-btn {
+  line-height: 28px
+}
+
+.auth-container .checkbox label {
+  padding: 0
+}
+
+.auth-container .checkbox a {
+  vertical-align: text-top
+}
+
+.auth-container .checkbox span {
+  color: #4f5f6f
+}
+
+@media (max-width: 767px) {
+  .auth-container {
+    width: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+    -webkit-transform: inherit;
+    transform: inherit;
+    margin: 0;
+    margin-bottom: 10px
+  }
+
+  .auth-container .auth-content {
+    padding: 30px 25px
+  }
+}
+.logo {
+  display: inline-block;
+  width: 45px;
+  height: 25px;
+  vertical-align: middle;
+  margin-right: 5px;
+  position: relative
+}
+
+.logo .l {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #52bcd3;
+  position: absolute
+}
+
+.logo .l.l1 {
+  bottom: 0;
+  left: 0
+}
+
+.logo .l.l2 {
+  width: 7px;
+  height: 7px;
+  bottom: 13px;
+  left: 10px
+}
+
+.logo .l.l3 {
+  width: 7px;
+  height: 7px;
+  bottom: 4px;
+  left: 17px
+}
+
+.logo .l.l4 {
+  bottom: 13px;
+  left: 25px
+}
+
+.logo .l.l5 {
+  bottom: 0;
+  left: 34px
+}
+.form-group.has-error .form-help-text {
+  color: #fb494d;
+  font-size: 13px
+}
+
+.form-group.has-error .form-control {
+  border-color: #fb494d
+}
+
+.form-group.has-success .form-help-text {
+  color: #8cde33;
+  font-size: 13px
+}
+
+.form-group.has-error span.has-error {
+  color: #f44;
+  font-size: 13px;
+  display: block !important
+}
+
+.form-group.has-error .form-control-feedback {
+  color: #f44
+}
+
+.form-group.has-warning span.has-warning {
+  color: #fe974b;
+  font-size: 13px;
+  display: block !important
+}
+
+.text-xs-left {
+  text-align: left !important
+}
+
+.text-xs-right {
+  text-align: right !important
+}
+
+.text-xs-center {
+  text-align: center !important
+}

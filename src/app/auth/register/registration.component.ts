@@ -11,7 +11,7 @@ import {User} from '../../shared/models/user.model';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   constructor(

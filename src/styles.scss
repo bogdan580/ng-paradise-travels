@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 .auth {
   position: absolute;
   width: 100%;
@@ -63,13 +62,14 @@
     top: 0;
     -webkit-transform: inherit;
     transform: inherit;
-    margin: 0 0 10px
+    margin: 0;
+    margin-bottom: 10px
   }
+
   .auth-container .auth-content {
     padding: 30px 25px
   }
 }
-
 .logo {
   display: inline-block;
   width: 45px;
@@ -115,7 +115,6 @@
   bottom: 0;
   left: 34px
 }
-
 .form-group.has-error .form-help-text {
   color: #fb494d;
   font-size: 13px
