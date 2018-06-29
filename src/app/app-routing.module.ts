@@ -3,11 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './system/home-page/home-page.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'home',
-    component: HomePageComponent
-  }
+  {path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
