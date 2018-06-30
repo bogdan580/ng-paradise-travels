@@ -1,18 +1,15 @@
 <nav class="navbar navbar-light navbar-expand-md" style="background-color:#3a4651;">
-  <div class="container-fluid"><a class="navbar-brand text-primary" href="system/home">Paradise Travels</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="color:rgba(255,255,255,0.5);"></span></button>
+  <div class="container-fluid"><a class="navbar-brand text-primary" [routerLink]="'/home'">Paradise Travels</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon" style="color:rgba(255,255,255,0.5);"></span></button>
     <div
       class="collapse navbar-collapse" id="navcol-1">
       <ul class="nav navbar-nav">
-        <li class="nav-item" role="presentation"><a class="nav-link active" href="system/offers" style="color:#ffffff;">Oferty</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Last Minute</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Wycieczki</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Bilety lotnicze</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Hotele</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Promocje</a></li>
-        <li class="nav-item" role="presentation"><a class="nav-link" href="#" style="color:#ffffff;">Rankingi</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link active" [routerLink]="'/offers'" style="color:#ffffff;">Offers</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="'/offer'" style="color:#ffffff;">Offer</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="'/profile'" style="color:#ff0000;">Profile</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link" [routerLink]="'/cart'" style="color:#ffffff;">Cart</a></li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item" role="presentation"><a class="nav-link active" href="login" style="color:#ffffff;">Logowanie/Rejestracja</a></li>
+        <li class="nav-item" role="presentation"><a class="nav-link active" [routerLink]="'/auth/login'" style="color:#ffffff;">Log In/Sing Up</a></li>
       </ul>
     </div>
   </div>
@@ -22,11 +19,10 @@
   <footer>
     <div class="social"></div>
     <ul class="list-inline">
-      <li class="list-inline-item"><a href="#" style="color:#ffffff;">Strona domowa</a></li>
-      <li class="list-inline-item"><a href="#" style="color:#ffffff;">Usługi</a></li>
-      <li class="list-inline-item"><a href="#" style="color:#ffffff;">O nas</a></li>
-      <li class="list-inline-item"><a href="#" style="color:#ffffff;">Warunki</a></li>
-      <li class="list-inline-item"><a href="#" style="color:#ffffff;">Polityka prywatności</a></li>
+      <li class="list-inline-item"><a [routerLink]="'/home'" style="color:#ffffff;">Home page</a></li>
+      <li class="list-inline-item"><a [routerLink]="'/offers'" style="color:#ffffff;">Offers</a></li>
+      <li class="list-inline-item"><a [routerLink]="'/profile'" style="color:#ffffff;">Profile</a></li>
+      <li class="list-inline-item"><a [routerLink]="'/cart'" style="color:#ffffff;">Cart</a></li>
     </ul>
     <p class="copyright">Paradise Travels © 2018</p>
   </footer>

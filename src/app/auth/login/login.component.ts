@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       .subscribe((userLoginResponseModel: UserLoginResponseModel) => {
         if (userLoginResponseModel.result === true) {
           this.authService.login();
-          this.router.navigate(['system']);
+          this.router.navigate(['system/home']);
         } else {
           this.showMessage({
             text: userLoginResponseModel.msg,
