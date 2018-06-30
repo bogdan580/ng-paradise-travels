@@ -1,4 +1,4 @@
-<h4><p class="text-xs-center">Rejestracja</p></h4>
+<h4><p class="text-xs-center">Sing Up</p></h4>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div
     class="form-group"
@@ -9,7 +9,7 @@
       type="text"
       class="form-control underlined"
       id="login"
-      placeholder="Wpisz login"
+      placeholder="Your login"
       formControlName="login"
     >
     <span
@@ -23,12 +23,12 @@
   <div class="form-group"
        [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
   >
-    <label for="password">Hasło</label>
+    <label for="password">Password</label>
     <input
       type="password"
       class="form-control underlined"
       id="password"
-      placeholder="Wpisz hasło"
+      placeholder="Your password"
       formControlName="password"
     >
 
@@ -47,12 +47,12 @@
   <div class="form-group"
        [ngClass]="{'has-error': form.get('firstName').invalid && form.get('firstName').touched}"
   >
-    <label for="firstName">Imię</label>
+    <label for="firstName">First Name</label>
     <input
       type="text"
       class="form-control underlined"
       id="firstName"
-      placeholder="Wpisz imię"
+      placeholder="Your First Name"
       formControlName="firstName"
     >
     <span class="form-help-text"
@@ -70,20 +70,20 @@
         type="checkbox"
         formControlName="agree"
       >
-      <span> Zgadzam się z polityką prywatności</span>
+      <span> I agree with the privacy policy</span>
     </label>
   </div>
   <div class="form-group">
     <button type="submit"
             class="btn btn-block btn-primary"
             [disabled]="form.invalid"
-    >Zarejestruj</button>
+    >Sing Up</button>
   </div>
   <div class="form-group">
     <p class="text-muted text-xs-center">
-      Masz konto?
-      <a [routerLink]="'/login'">
-        Zaloguj!
+      You have account?
+      <a [routerLink]="'/auth/login'">
+        Log In!
       </a>
     </p>
   </div>

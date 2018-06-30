@@ -8,7 +8,7 @@ import {CartPageComponent} from './cart-page/cart-page.component';
 import {ProfilePageComponent} from './profile-page/profile-page.component';
 
 const routes: Routes = [{
-  path: 'system', component: SystemComponent, children: [
+  path: '', component: SystemComponent, children: [
     {path: 'home', component: HomePageComponent},
     {path: 'offers', component: OffersPageComponent},
     {path: 'offer', component: OfferPageComponent},
