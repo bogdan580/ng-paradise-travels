@@ -31,6 +31,6 @@ export class UsersService {
   }
 
   createNewUser(user: User): Observable<User> {
-    return this.http.post<User>(`http://localhost:3000/users`, user) ;
+    return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
   }
 }
