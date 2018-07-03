@@ -1,10 +1,12 @@
 import {Injectable} from '@angular/core';
-import {User} from '../../models/user.model';
+
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
-import {UserLoginResponseModel} from '../../models/responseModels/userLoginResponse.model';
-import {ConfigService} from '../config.service';
+
 import {catchError} from 'rxjs/internal/operators';
+import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse.model';
+import {ConfigService} from './config.service';
+import {User} from '../models/user.model';
 
 
 @Injectable()
