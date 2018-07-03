@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['nowCanLogin']) {
         this.showMessage({
-          text: 'Teraz możesz wejść do panelu',
+          text: 'Now you can Log In',
           type: 'success'
         });
       }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
       .subscribe((userLoginResponseModel: UserLoginResponseModel) => {
         if (userLoginResponseModel.result === true) {
           this.authService.login();
-          this.router.navigate(['system/home']);
+          this.router.navigate(['/profile']);
         } else {
           this.showMessage({
             text: userLoginResponseModel.msg,
