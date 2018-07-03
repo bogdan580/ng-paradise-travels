@@ -5,7 +5,6 @@ import {SystemRoutingModule} from './system-routing.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { OffersPageComponent } from './offers-page/offers-page.component';
 import { OfferPageComponent } from './offer-page/offer-page.component';
-import { CartPageComponent } from './cart-page/cart-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     HomePageComponent,
     OffersPageComponent,
     OfferPageComponent,
-    CartPageComponent,
     ProfilePageComponent]
 })
 export class SystemModule {}
