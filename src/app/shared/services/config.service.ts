@@ -6,6 +6,6 @@ import {Injectable} from '@angular/core';
 export class ConfigService {
 
   public getBeckendUrl(): string {
-    return 'http://77.55.193.96:8080/paradiseTravels';
+    return 'http://server.localhost:8080/paradiseTravels';
   }
 }

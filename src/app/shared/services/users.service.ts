@@ -22,15 +22,22 @@ export class UsersService {
         {
           'login': login,
           'password' : password,
-        }
+        }// ,
+       // {
+       //   withCredentials: true
+       // }
     );
   }
 
-  getUserByLogin(login: string): Observable<User> {
-      return this.http.get<User>(`http://localhost:3000/users?login=${login}`);
+  getUserByLogin(login: string): Observable<User> {// poprawic
+      return this.http.get<User>(this.configService.getBeckendUrl() + `/users?login=${login}`);
   }
 
   createNewUser(user: User): Observable<User> {
     return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
+  }
+
+  getLoggedUser(): Observable<User> {
+    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`);
   }
 }
