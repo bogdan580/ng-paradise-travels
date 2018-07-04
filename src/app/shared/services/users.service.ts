@@ -7,6 +7,7 @@ import {catchError} from 'rxjs/internal/operators';
 import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse.model';
 import {ConfigService} from './config.service';
 import {User} from '../models/user.model';
+import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
 
 
 @Injectable()
@@ -30,6 +31,10 @@ export class UsersService {
 
   getUserByLogin(login: string): Observable<User> {// poprawic
       return this.http.get<User>(this.configService.getBeckendUrl() + `/users?login=${login}`);
+  }
+
+  issetUser(login: String): Observable<Object> {// poprawic
+    return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/users/is-exist/${login}`);
   }
 
   createNewUser(user: User): Observable<User> {
