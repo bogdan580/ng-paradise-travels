@@ -24,10 +24,7 @@ export class UsersService {
         {
           'login': login,
           'password' : password,
-        }// ,
-       // {
-       //   withCredentials: true
-       // }
+        }
     );
   }
 
@@ -40,6 +37,7 @@ export class UsersService {
   }
 
   getLoggedUser(): Observable<User> {
-    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`);
+    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`
+    );
   }
 }
