@@ -61,6 +61,26 @@
       Name is empty!
     </span>
   </div>
+
+  <div class="form-group"
+       [ngClass]="{'has-error': form.get('postalCode').invalid && form.get('postalCode').touched}"
+  >
+    <label for="postalCode">Postal Code</label>
+    <input
+      type="text"
+      class="form-control underlined"
+      id="postalCode"
+      placeholder="Your Postal Code"
+      formControlName="postalCode"
+    >
+    <span class="form-help-text"
+          *ngIf="form.get('postalCode').invalid && form.get('postalCode').touched"
+    >
+      Postal Code is empty!
+    </span>
+  </div>
+
+
   <div class="form-group"
        [ngClass]="{'has-error': form.get('agree').invalid && form.get('agree').touched}">
     <label for="agree">
