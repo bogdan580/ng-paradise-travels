@@ -36,6 +36,9 @@ export class UsersService {
     return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
   }
 
+  getUserById(id: number): Observable<User> {
+    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/${id}`);
+  }
   getLoggedUser(): Observable<User> {
     return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`
     );
