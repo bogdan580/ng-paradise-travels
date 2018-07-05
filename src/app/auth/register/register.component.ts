@@ -1,3 +1,4 @@
+///<reference path="../../shared/models/user.model.ts"/>
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
@@ -7,6 +8,7 @@ import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user.model';
 import {Address} from '../../shared/models/address.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
+import {HelperService} from '../../shared/services/helper.service';
 
 @Component({
   selector: 'wfm-registration',
@@ -18,7 +20,8 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   constructor(
     private router: Router,
-    private userService: UsersService
+    private userService: UsersService,
+    private helperService: HelperService
   ) { }
 
   ngOnInit() {
@@ -33,12 +36,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    const result: User = Object.assign(User, this.form.value);
-    console.log(result);
-
     const {login, password, firstName, lastName, postalCode, email} = this.form.value;
-    const address = new Address(null, postalCode, null, null, null);
-    const user = new User(login, password, firstName, lastName, address, email, 'user');
+    const user = new User(login, password, firstName, lastName, null, email, 'user');
 
     this.userService.createNewUser(user)
       .subscribe(() => {
