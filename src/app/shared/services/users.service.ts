@@ -33,8 +33,11 @@ export class UsersService {
       return this.http.get<User>(this.configService.getBeckendUrl() + `/users?login=${login}`);
   }
 
-  userIsExist(login: String): Observable<Object> {// poprawic
-    return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/users/is-exist/${login}`);
+  existUserLogin(login: String): Observable<Object> {// poprawic
+    return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/users/login-is-exist/${login}`);
+  }
+  existUserEmail(login: String): Observable<Object> {// poprawic
+    return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/users/email-is-exist/${login}`);
   }
 
   createNewUser(user: User): Observable<User> {

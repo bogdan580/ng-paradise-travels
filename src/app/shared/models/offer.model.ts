@@ -11,6 +11,7 @@ export interface Offer {
     id?: number;
 
 }
+
 export namespace Convert {
   export function toOffer(json: string): Offer {
     return JSON.parse(json);
