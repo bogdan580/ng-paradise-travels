@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OffersService} from '../../shared/services/offers.service';
 import {Offer, Convert} from '../../shared/models/offer.model';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import {Router, ActivatedRoute, Params, ParamMap} from '@angular/router';
+import {switchMap} from 'rxjs/internal/operators';
 
 @Component({
   selector: 'wfm-offer-page',
@@ -12,22 +13,27 @@ export class OfferPageComponent implements OnInit {
 
   offers: Array<Offer>;
   oferty: Offer;
-  public id: number;
+  public selectedId: any;
   constructor(private offersService: OffersService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.route
-      .queryParams
-      .subscribe(params => {
-        this.id = params['id'];
-      });
-    this.getOffers(this.id);
+    this.
+    route.
+    params.
+    subscribe(params => {
+      console.log(params);
+      this.selectedId = params;
+      console.log(this.selectedId);
+      console.log(this.selectedId.id);
+    });
+    this.getOffers();
   }
-  getOffers(id: number): void {
+  getOffers(): void {
     this.offersService.getOffers().subscribe(oferta => {
       this.offers = Convert.toOffers(JSON.stringify(oferta));
-      this.oferty = this.offers.find(item => item.id === 1);
+      this.oferty = this.offers.find(item => item.id === Number(this.selectedId.id));
+      console.log(this.selectedId.id);
       console.log(this.oferty);
     });
   }
