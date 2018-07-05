@@ -26,7 +26,7 @@
 
         <div class="row" style="background-color:rgba(0,0,0,0.5);padding-bottom:150px;">
           <div class="col">
-            <a href="/offer?id={{off.id}}">
+            <a [routerLink]="['/offer', off.id]">
             <h3 class="text-center" style="font-family:Lemonada, cursive;padding:15px;color:#ffffff;margin-top:30px;">{{off.name}}</h3>
             <h3 class="text-center" style="font-family:Aldrich, sans-serif;padding:15px;color:rgb(254,244,5);margin-right:75px;margin-left:75px;"><br>{{off.shortDescription}}<br><br></h3>
             </a>
