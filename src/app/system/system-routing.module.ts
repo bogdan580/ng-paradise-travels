@@ -11,7 +11,7 @@ const routes: Routes = [{
   path: '', component: SystemComponent, children: [
     {path: 'home', component: HomePageComponent},
     {path: 'offers', component: OffersPageComponent},
-    {path: 'offer', component: OfferPageComponent},
+    {path: 'offer/:id', component: OfferPageComponent},
     {path: 'profile', component: ProfilePageComponent},
     {path: 'admin', component: AdminPageComponent}
   ]
