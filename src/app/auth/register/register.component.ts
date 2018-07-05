@@ -21,8 +21,6 @@ export class RegisterComponent implements OnInit {
     private userService: UsersService
   ) { }
 
-  user: User;
-
   ngOnInit() {
     this.form = new FormGroup({
       'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
@@ -35,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    const result: User = Object.assign({}, this.form.value);
+    const result: User = Object.assign(User, this.form.value);
     console.log(result);
 
     const {login, password, firstName, lastName, postalCode, email} = this.form.value;
