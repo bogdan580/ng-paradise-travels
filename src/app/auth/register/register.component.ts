@@ -33,9 +33,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    const {login, password, firstName, postalCode, email} = this.form.value;
+    const {login, password, firstName, lastName, postalCode, email} = this.form.value;
     const address = new Address(null, postalCode, null, null, null);
-    const user = new User(login, password, firstName, address, email);
+    const user = new User(login, password, firstName, lastName, address, email, 'user');
 
     this.userService.createNewUser(user)
       .subscribe(() => {
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit {
 
   forbiddenLogins (control: FormControl): Promise<any> {
     return new Promise((resolve, reject)  => {
-      this.userService.issetUser(control.value)
+      this.userService.userIsExist(control.value)
         .subscribe((obj: PojoBooleanModel) => {
           console.log(obj.value);
           if (obj.value) {

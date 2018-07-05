@@ -17,9 +17,9 @@
               <img class="img-fluid" src="assets/img/user.png">
               </a></div>
             <div class="col">
-              <h3 class="text-right">{{user.firstName}} Surname</h3>
+              <h3 class="text-right">{{user.firstName}} {{user.lastName}}</h3>
               <hr style="margin-bottom:5px;">
-              <h6 class="text-right text-muted mb-2">Role</h6>
+              <h6 class="text-right text-muted mb-2">{{user.role}}</h6>
               <h5 class="text-right">{{user.login}}</h5>
               <h5 class="text-right">{{user.email}}</h5>
             </div>
@@ -50,26 +50,27 @@
         <div class="card-body">
           <h4 style="margin-bottom:15px;">Address</h4>
           <div class="row">
-            <div class="col"><label class="col-form-label d-block">Address</label><label class="col-form-label d-block">Region</label><label
-              class="col-form-label d-block">Country</label></div>
-            <div class="col"><label class="col-form-label d-block">City</label><label
-              class="col-form-label d-block">ZIP</label></div>
+            <div class="col"><label class="col-form-label d-block">{{user.address.address}}</label>
+              <label class="col-form-label d-block">{{user.address.region}}</label>
+              <label class="col-form-label d-block">{{user.address.country}}</label></div>
+            <div class="col"><label class="col-form-label d-block">{{user.address.city}}</label><label
+              class="col-form-label d-block">{{user.address.postalCode}}</label></div>
           </div>
           <div><a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-2"
                   role="button" href="#collapse-2">Update</a>
             <div class="collapse" id="collapse-2">
-              <form><input class="form-control" type="text" value="Address" placeholder="New address"
+              <form><input class="form-control" type="text" value="{{user.address.address}}" placeholder="New address"
                            style="margin-top:5px;margin-bottom:5px;">
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" value="ZIP" placeholder="New ZIP"
+                  <div class="col"><input class="form-control" type="text" value="{{user.address.postalCode}}" placeholder="New ZIP"
                                           style="margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" value="City" placeholder="New city"
+                  <div class="col"><input class="form-control" type="text" value="{{user.address.city}}" placeholder="New city"
                                           style="margin-top:5px;margin-bottom:5px;"></div>
                 </div>
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" value="Region" placeholder="New region"
+                  <div class="col"><input class="form-control" type="text" value="{{user.address.region}}" placeholder="New region"
                                           style="margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" value="Country" placeholder="New country"
+                  <div class="col"><input class="form-control" type="text" value="{{user.address.country}}" placeholder="New country"
                                           style="margin-top:5px;margin-bottom:5px;"><a
                     class="btn btn-success active float-right" role="button" href="#">Save</a></div>
                 </div>

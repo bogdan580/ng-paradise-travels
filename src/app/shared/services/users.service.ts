@@ -33,7 +33,7 @@ export class UsersService {
       return this.http.get<User>(this.configService.getBeckendUrl() + `/users?login=${login}`);
   }
 
-  issetUser(login: String): Observable<Object> {// poprawic
+  userIsExist(login: String): Observable<Object> {// poprawic
     return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/users/is-exist/${login}`);
   }
 
