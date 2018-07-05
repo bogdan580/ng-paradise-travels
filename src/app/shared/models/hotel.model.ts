@@ -1,5 +1,6 @@
 import {Address} from './address.model';
 import {Jorney} from './jorney';
+import {ReviewModel} from './review.model';
 
 export interface Hotel {
     name: string;
@@ -7,6 +8,7 @@ export interface Hotel {
     stars: number;
     address: Address;
     localJourneyList: Array<Jorney>;
+    reviewList: Array<ReviewModel>;
     id?: number;
 
 }

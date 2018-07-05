@@ -107,17 +107,9 @@
             </div>
           </div>
           <div class="row justify-content-around">
-            <div class="col">
-              <h5 class="text-center">Imię</h5>
-              <p>Nullam id dolor id nibh ultricie vehicula ut id elit.<br></p>
-            </div>
-            <div class="col">
-              <h5 class="text-center">Imię</h5>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit.<br></p>
-            </div>
-            <div class="col">
-              <h5 class="text-center">Imię</h5>
-              <p>Nullam id dolor id nibh ultricies vehicula ut id elit.<br></p>
+            <div class="col" *ngFor="let review of oferty.hotel.reviewList">
+              <h5 class="text-center">{{review.stars}}</h5>
+              <p>{{review.description}}<br></p>
             </div>
           </div>
         </div>
@@ -130,23 +122,8 @@
             <div class="col">
               <h4 class="text-center" style="margin-bottom:15px;">Pogoda</h4>
               <h6 class="text-right text-muted mb-2">Subtitle</h6>
-              <div style="background-color:rgba(0,0,0,0.53);height:90px;"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <div class="card" style="margin-top:15px;margin-bottom:15px;">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-              <h4 class="text-center" style="margin-bottom:15px;">Mapa</h4>
-              <h6 class="text-right text-muted mb-2">Subtitle</h6>
-              <div
-                style="background-color:rgba(0,0,0,0.53);height:250px;background-image:url(&quot;assets/img/mapa.png&quot;);background-size:cover;background-repeat:no-repeat;"></div>
+              <a href="https://www.accuweather.com/en/es/barcelona/307297/current-weather/307297" class="aw-widget-legal">
+              </a><div id="awtd1530830350041" class="aw-widget-36hour"  data-locationkey="" data-unit="f" data-language="en-us" data-useip="true" data-uid="awtd1530830350041" data-editlocation="true"></div>
             </div>
           </div>
         </div>
