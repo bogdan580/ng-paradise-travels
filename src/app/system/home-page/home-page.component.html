@@ -21,7 +21,9 @@
 <div class="simple-slider" style="padding:15px;margin:30px;padding-top:0px;padding-bottom:0px;">
   <div class="swiper-container" style="margin:20px;height:350px;">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" style="background-image:url(assets/img/building.jpg);" *ngFor="let off of offers">
+      <ng-container *ngFor="let off of offers">
+      <div class="swiper-slide" [ngStyle]="{'background-image': 'url(/assets/img/'+off.id+'.jpg)'}">
+
         <div class="row" style="background-color:rgba(0,0,0,0.5);padding-bottom:150px;">
           <div class="col">
             <a href="/offer?id={{off.id}}">
@@ -31,6 +33,7 @@
           </div>
       </div>
       </div>
+      </ng-container>
       <div class="swiper-slide" style="background-image:url(assets/img/building.jpg);" >
         <div class="row" style="background-color:rgba(0,0,0,0.5);padding-bottom:150px;">
           <div class="col">
