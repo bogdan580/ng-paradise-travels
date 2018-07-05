@@ -11,6 +11,7 @@ import {User} from '../../shared/models/user.model';
 })
 export class ProfilePageComponent implements OnInit {
   message: Message;
+  user: User;
   constructor(  private router: Router,
                 private route: ActivatedRoute,
                 private userService: UsersService
@@ -30,6 +31,7 @@ export class ProfilePageComponent implements OnInit {
       .subscribe((user: User) => {
         console.log('hi');
         console.log(user);
+        this.user = user;
       });
   }
 

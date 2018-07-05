@@ -6,6 +6,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { OffersPageComponent } from './offers-page/offers-page.component';
 import { OfferPageComponent } from './offer-page/offer-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
     HomePageComponent,
     OffersPageComponent,
     OfferPageComponent,
-    ProfilePageComponent]
+    ProfilePageComponent,
+    AdminPageComponent]
 })
 export class SystemModule {}
