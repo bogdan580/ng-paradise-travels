@@ -21,6 +21,7 @@ export class OfferPageComponent implements OnInit {
       .queryParams
       .subscribe(params => {
         this.id = params['id'];
+        console.log(this.oferty.hotel.localJourneyList);
       });
     this.getOffers(this.id);
   }
