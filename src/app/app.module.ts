@@ -6,12 +6,12 @@ import {AuthModule} from './auth/auth.module';
 import {AppRoutingModule} from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {UsersService} from './shared/services/users.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from './shared/services/auth.service';
 import {SystemModule} from './system/system.module';
 import {SystemComponent} from './system/system.component';
 import {ConfigService} from './shared/services/config.service';
-import {OffersService} from './shared/services/offers.service';
+import {CustomInterceptor} from './shared/Interceptors/custom.interceptor';
 
 
 @NgModule({
@@ -26,7 +26,13 @@ import {OffersService} from './shared/services/offers.service';
     AppRoutingModule,
     SystemModule
   ],
-  providers: [UsersService, AuthService, ConfigService, OffersService],
+  providers: [
+    UsersService, AuthService, ConfigService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
