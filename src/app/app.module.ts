@@ -11,6 +11,7 @@ import {AuthService} from './shared/services/auth.service';
 import {SystemModule} from './system/system.module';
 import {SystemComponent} from './system/system.component';
 import {ConfigService} from './shared/services/config.service';
+import {OffersService} from './shared/services/offers.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import {ConfigService} from './shared/services/config.service';
     AppRoutingModule,
     SystemModule
   ],
-  providers: [UsersService, AuthService, ConfigService],
+  providers: [UsersService, AuthService, ConfigService, OffersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

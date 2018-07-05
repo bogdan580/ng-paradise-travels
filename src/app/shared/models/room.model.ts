@@ -1,15 +1,13 @@
 import {Hotel} from './hotel.model';
 
-export class Room {
-  constructor(
-    public description: string,
-    public numberOfTwoPersonBed: number,
-    public numberOfOnePersonBed: number,
-    public price: number,
-    public country: string,
-    public hotel: Hotel,
-    public facility: number,
-    public id?: number
-  ) {}
+export interface Room {
+    description: string;
+    numberOfTwoPersonBed: number;
+    numberOfOnePersonBed: number;
+    price: number;
+    country: string;
+    hotel: Hotel;
+    facility: number;
+    id?: number;
 
 }

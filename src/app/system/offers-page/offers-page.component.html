@@ -16,25 +16,16 @@
     </form>
   </div>
 </div>
-<h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Offers list</h1>
+
+<h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Lista ofert</h1>
 <ul class="list-group" style="padding:30px;">
-  <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">List Group Item 1</span></strong>
+  <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;" *ngFor="let app of offers"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">{{app.name}}</span></strong>
     <div class="row justify-content-center align-items-center" style="margin:12px;">
       <div class="col-md-11 col-lg-4" style="margin:8px;"><img class="rounded img-fluid" src="assets/img/star-sky.jpg"></div>
       <div class="col">
-        <p class="lead text-center" style="margin-bottom:0px;">Paragraph</p><span style="font-size:16px;"><br><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.&nbsp;<br><br></span>
+        <p class="lead text-center" style="margin-bottom:0px;"> {{app.hotel.name}}</p><span style="font-size:16px;"><br><strong></strong>&nbsp;{{app.shortDescription}} &nbsp;<br><br></span>
         <a
-          class="btn btn-primary float-right" role="button" href="#" style="margin:15px;margin-bottom:10px;margin-top:0;">Read more</a>
-      </div>
-    </div>
-  </li>
-  <li class="list-group-item float-left" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">List Group Item 2</span></strong>
-    <div class="row" style="margin:12px;">
-      <div class="col-md-11 col-lg-4" style="margin:8px;"><img class="rounded img-fluid" src="assets/img/6.jpg"></div>
-      <div class="col">
-        <p class="lead text-center" style="margin-bottom:0px;">Paragraph</p><span style="font-size:16px;"><br><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.&nbsp;<br><br></span>
-        <a
-          class="btn btn-primary float-right" role="button" href="#" style="margin:15px;margin-bottom:10px;margin-top:0;">Read more</a>
+          class="btn btn-primary float-right" role="button" href="/offer?id={{app.id}}" style="margin:15px;margin-bottom:10px;margin-top:0;">Read more</a>
       </div>
     </div>
   </li>
