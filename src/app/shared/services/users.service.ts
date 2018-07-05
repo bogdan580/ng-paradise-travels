@@ -48,7 +48,10 @@ export class UsersService {
     return this.http.get<User>(this.configService.getBeckendUrl() + `/users/${id}`);
   }
   getLoggedUser(): Observable<User> {
-    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`
-    );
+    return this.http.get<User>(this.configService.getBeckendUrl() + `/users/logged`);
+  }
+
+  logout(): Observable<Object> {
+    return this.http.get<PojoBooleanModel>(this.configService.getBeckendUrl() + `/logout`);
   }
 }

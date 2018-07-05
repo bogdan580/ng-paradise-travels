@@ -33,6 +33,7 @@ export class ProfilePageComponent implements OnInit {
         console.log(user);
         this.user = user;
       });
+   // if (this.user.role === 'admin')
   }
 
   private showMessage(message: Message) {

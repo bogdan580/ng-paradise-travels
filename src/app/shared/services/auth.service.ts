@@ -1,6 +1,7 @@
 export class AuthService {
 
-  private isAuthenticated = false;
+  public isAuthenticated = false;
+  public isAdmin = false;
   login() {
     this.isAuthenticated = true;
   }
