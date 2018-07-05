@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Convert, Offer} from '../../shared/models/offer.model';
 import {OffersService} from '../../shared/services/offers.service';
 
@@ -7,10 +7,13 @@ import {OffersService} from '../../shared/services/offers.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, OnChanges {
   offers: Offer;
+
   constructor(private offersService: OffersService) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+  }
   ngOnInit() {
     this.get2Offers();
   }
@@ -18,6 +21,7 @@ export class HomePageComponent implements OnInit {
     this.offersService.getOffers().subscribe(oferta => {
       console.log(oferta);
       this.offers = Convert.toOffer(JSON.stringify(oferta));
+
     });
   }
 
