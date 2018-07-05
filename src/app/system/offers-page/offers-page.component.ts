@@ -15,7 +15,7 @@ export class OffersPageComponent implements OnInit {
   }
   getOffers(): void {
     this.offersService.getOffers().subscribe(oferta => {
-      this.offers = Convert.toOffer(JSON.stringify(oferta));
+      this.offers = oferta;
     });
   }
 
