@@ -81,7 +81,7 @@ export class OfferPageComponent implements OnInit {
     }
 
     console.log(this.form.value);
-    offerBuyRequestModel.hotelId = this.oferty.hotel.id;
+    offerBuyRequestModel.offerId = this.oferty.id;
 
     const {numberOfCustomers, from, to, numberOfOnePersonBed, numberOfTwoPersonBed} = this.form.value;
     offerBuyRequestModel.numberOfCustomers = numberOfCustomers;
