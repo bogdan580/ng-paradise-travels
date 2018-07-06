@@ -1,4 +1,5 @@
 import {Hotel} from './hotel.model';
+import {Jorney} from './jorney';
 
 export interface Offer {
     hotel: Hotel;
