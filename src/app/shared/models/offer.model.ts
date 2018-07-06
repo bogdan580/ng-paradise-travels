@@ -8,6 +8,7 @@ export interface Offer {
     promoted: boolean;
     description: string;
     shortDescription: string;
+    pricePerDayPerPerson: number;
     id?: number;
 
 }

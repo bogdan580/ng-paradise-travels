@@ -7,11 +7,11 @@
         <li class="nav-item" role="presentation"><a class="nav-link" *ngIf="isAdm" [routerLink]="'/admin'" style="color:#ffffff;">Admin</a></li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item" role="presentation" *ngIf="!authService.isAuthenticated"><a class="nav-link active" [routerLink]="'/auth/login'" style="color:#ffffff;">Log In/Sing Up</a></li>
-        <li class="nav-item" role="presentation" *ngIf="authService.isAuthenticated"><a class="nav-link active" [routerLink]="'/profile'" style="color:#ffffff;">My profile</a></li>
+        <li class="nav-item" role="presentation" *ngIf="!isLog"><a class="nav-link active" [routerLink]="'/auth/login'" style="color:#ffffff;">Log In/Sing Up</a></li>
+        <li class="nav-item" role="presentation" *ngIf="isLog"><a class="nav-link active" [routerLink]="'/profile'" style="color:#ffffff;">My profile</a></li>
       </ul>
 
-      <button class="btn btn-primary" type="button" *ngIf="authService.isAuthenticated" (click)="onClickLogout()" style="margin-bottom:10px;">Wyloguj</button>
+      <button class="btn btn-primary" type="button" *ngIf="isLog" (click)="onClickLogout()" style="margin-bottom:10px;">Wyloguj</button>
     </div>
   </div>
 </nav>

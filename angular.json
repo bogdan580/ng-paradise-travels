@@ -29,6 +29,7 @@
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/script.min.js",
+              "src/assets/js/weather.js",
               "src/assets/js/lightbox.min.js",
               "src/assets/js/swiper.jquery.min.js",
               "src/assets/bootstrap/js/bootstrap.min.js"
@@ -86,6 +87,7 @@
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/script.min.js",
+              "src/assets/js/weather.js",
               "src/assets/js/lightbox.min.js",
               "src/assets/js/swiper.jquery.min.js",
               "src/assets/bootstrap/js/bootstrap.min.js"

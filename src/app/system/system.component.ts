@@ -14,6 +14,7 @@ import {User} from '../shared/models/user.model';
 export class SystemComponent implements OnInit {
   user: User;
   isAdm: boolean;
+  isLog: boolean;
   constructor (
     private router: Router,
     private usersService: UsersService,
@@ -28,6 +29,7 @@ export class SystemComponent implements OnInit {
         console.log('xxxx');
         this.user = user;
         this.Check(this.user.role);
+        this.isLog = true;
         console.log(this.user.role);
         console.log(this.isAdm);
       });
@@ -39,6 +41,7 @@ export class SystemComponent implements OnInit {
         if (pojoBolleanModel.value === true) {
           this.authService.logout();
           this.isAdm = false;
+          this.isLog = false;
           this.router.navigate(['/home']);
         }
       });
