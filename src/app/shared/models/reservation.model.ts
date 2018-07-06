@@ -7,11 +7,24 @@ export interface Reservation {
     room: Room;
     user: User;
     offer: Offer;
-    name: string;
-    dateFrom: string;
-    dateTo: string;
-    pprice: number;
-    status: string;
+    numberofonepersonbed: number;
+    numberoftwopersonbed: number;
+    dateFrom: Date;
+    dateTo: Date;
+    price: number;
+    priceTotal: number;
+    reservationstatus: string;
     id?: number;
-
+    peoplecount: number;
+}
+export namespace Convert {
+  export function toReservation(json: string): Reservation {
+    return JSON.parse(json);
+  }
+  export function toReservations(json: string): Reservation[] {
+    return JSON.parse(json);
+  }
+  export function ToJson(value: Reservation): string {
+    return JSON.stringify(value, null, 2);
+  }
 }

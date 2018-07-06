@@ -84,37 +84,36 @@
     </div>
   </div>
   <h2 class="text-center">Reservations</h2>
-  <div class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> reservations.</span></div>
   <div class="row">
     <div class="col">
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
           <h4 class="text-left card-title">Offer name</h4>
           <hr>
-          <h5 class="text-left text-muted card-subtitle mb-2">Price $$$</h5>
-          <h4>#id_reservation</h4>
-          <h4>Hotel name , stars</h4>
-          <h4>Hotel address, phone</h4>
-          <h4>Room, code</h4>
-          <h4>Reservation from *data to *data</h4>
+          <h5 class="text-left text-muted card-subtitle mb-2"></h5>
+          <h4>ID: {{reserv.id}}</h4>
+          <h4>{{reserv.offer.hotel.name}} | number of stars: {{reserv.offer.hotel.stars}}</h4>
+          <h4>Total price: {{reserv.price}} $</h4>
+          <h4>Number of one person bed: {{reserv.numberofonepersonbed}}, Number of two person bed: {{reserv.numberoftwopersonbed}}</h4>
+          <h4>Reservation data: {{reserv.dateFrom | date:"fullDate" }} - {{reserv.dateTo | date:"fullDate" }}</h4>
+          <h4>Reservation status: {{reserv.reservationstatus}}</h4>
         </div>
       </div>
     </div>
   </div>
-  <h2 class="text-center">Local journeys</h2>
-  <div class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> journeys.</span></div>
-  <div class="row">
-    <div class="col">
-      <div class="card" style="margin-top:15px;margin-bottom:15px;">
-        <div class="card-body">
-          <h4 class="text-left card-title">Journeys names</h4>
-          <hr>
-          <h4>#id_reservation</h4>
-          <h4>Language guide</h4>
-          <h4>Duration time</h4>
-          <p>Description</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!--<h2 class="text-center">Local journeys</h2>-->
+  <!--<div class="row">-->
+    <!--<div class="col">-->
+      <!--<div class="card" style="margin-top:15px;margin-bottom:15px;">-->
+        <!--<div class="card-body">-->
+          <!--<h4 class="text-left card-title">{{reserv.offer.hotel.localJourneyList.name}}</h4>-->
+          <!--<hr>-->
+          <!--<h4>#id_reservation</h4>-->
+          <!--<h4>Language guide: {{reserv.offer.hotel.localJourneyList.languageGuide}}</h4>-->
+          <!--<h4>Duration time {{reserv.offer.hotel.localJourneyList.durationTimeMin}}</h4>-->
+          <!--<p>Description: {{reserv.offer.hotel.localJourneyList.description}}</p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
