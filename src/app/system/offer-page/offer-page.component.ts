@@ -20,7 +20,7 @@ export class OfferPageComponent implements OnInit {
   offers: Array<Offer>;
   oferty: Offer;
   public selectedId: any;
-  constructor(private offersService: OffersService, private route: ActivatedRoute) {
+  constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router,) {
   }
 
   @Input() form: FormGroup;
@@ -81,7 +81,7 @@ export class OfferPageComponent implements OnInit {
     }
 
     console.log(this.form.value);
-    offerBuyRequestModel.hotelId = this.oferty.hotel.id;
+    offerBuyRequestModel.offerId = this.oferty.id;
 
     const {numberOfCustomers, from, to, numberOfOnePersonBed, numberOfTwoPersonBed} = this.form.value;
     offerBuyRequestModel.numberOfCustomers = numberOfCustomers;
@@ -92,6 +92,24 @@ export class OfferPageComponent implements OnInit {
 
     this.offersService.buy(offerBuyRequestModel).subscribe((pojoBooleanModel: PojoBooleanModel) => {
       console.log(pojoBooleanModel);
+      alert('oferta zakupiona!');
+      this.router.navigate(['/profile']);
     });
+  }
+
+  totalPrice() {
+    let totalPrice = this.oferty.pricePerDayPerPerson * this.form.get('numberOfCustomers').value;
+
+    let diffInDay = this.form.get('to').value;
+
+    if (this.form.get('to').value != null && this.form.get('from').value != null) {
+      const diff = Math.abs(new Date(this.form.get('to').value).getTime() - new Date(this.form.get('from').value).getTime());
+      diffInDay = Math.ceil(diff / (1000 * 3600 * 24));
+    }
+    console.log(diffInDay);
+
+    totalPrice = totalPrice * diffInDay;
+
+    return totalPrice;
   }
 }

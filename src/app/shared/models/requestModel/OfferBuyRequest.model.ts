@@ -1,7 +1,7 @@
 export class OfferBuyRequestModel {
   constructor(
     public localJourneyIds: Array<number>,
-    public hotelId: number,
+    public offerId: number,
     public from: Date,
     public to: Date,
     public numberOfCustomers: number,
