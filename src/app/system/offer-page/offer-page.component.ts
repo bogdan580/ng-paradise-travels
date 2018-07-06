@@ -96,4 +96,20 @@ export class OfferPageComponent implements OnInit {
       this.router.navigate(['/profile']);
     });
   }
+
+  totalPrice() {
+    let totalPrice = this.oferty.pricePerDayPerPerson * this.form.get('numberOfCustomers').value;
+
+    let diffInDay = this.form.get('to').value;
+
+    if (this.form.get('to').value != null && this.form.get('from').value != null) {
+      const diff = Math.abs(new Date(this.form.get('to').value).getTime() - new Date(this.form.get('from').value).getTime());
+      diffInDay = Math.ceil(diff / (1000 * 3600 * 24));
+    }
+    console.log(diffInDay);
+
+    totalPrice = totalPrice * diffInDay;
+
+    return totalPrice;
+  }
 }
