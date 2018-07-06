@@ -20,7 +20,7 @@ export class OfferPageComponent implements OnInit {
   offers: Array<Offer>;
   oferty: Offer;
   public selectedId: any;
-  constructor(private offersService: OffersService, private route: ActivatedRoute) {
+  constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router,) {
   }
 
   @Input() form: FormGroup;
@@ -92,6 +92,8 @@ export class OfferPageComponent implements OnInit {
 
     this.offersService.buy(offerBuyRequestModel).subscribe((pojoBooleanModel: PojoBooleanModel) => {
       console.log(pojoBooleanModel);
+      alert('oferta zakupiona!');
+      this.router.navigate(['/profile']);
     });
   }
 }
