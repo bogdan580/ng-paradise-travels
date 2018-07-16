@@ -19,8 +19,9 @@ export class OfferPageComponent implements OnInit {
 
   offers: Array<Offer>;
   oferty: Offer;
+  hotelStars: number[];
   public selectedId: any;
-  constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router,) {
+  constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router, ) {
   }
 
   @Input() form: FormGroup;
@@ -53,7 +54,7 @@ export class OfferPageComponent implements OnInit {
       this.oferty = this.offers.find(item => item.id === Number(this.selectedId.id));
       console.log(this.selectedId.id);
       console.log(this.oferty);
-
+      this.hotelStars = new Array(this.oferty.hotel.stars);
       this.addJourneysFormControl(this.oferty.hotel.localJourneyList);
 
     });

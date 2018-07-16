@@ -39,7 +39,9 @@
           <h4 class="text-center card-title">{{oferty.hotel.name}}</h4>
           <h6 class="text-right text-muted card-subtitle mb-2"></h6>
           <p> {{oferty.hotel.description}}<br></p>
-          <h4 class="text-center card-title">Ilość gwiazdek: {{oferty.hotel.stars}}</h4>
+          <h4 class="text-center card-title">
+            <img *ngFor="let star of hotelStars" src="assets/img/star-icon.png" style="width:48px;">
+          </h4>
         </div>
       </div>
     </div>

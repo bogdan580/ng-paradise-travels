@@ -8,7 +8,7 @@ import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse
 import {OfferBuyRequestModel} from '../models/requestModel/OfferBuyRequest.model';
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'root'})
 export class OffersService {
   constructor(private http: HttpClient,
               private configService: ConfigService) {
