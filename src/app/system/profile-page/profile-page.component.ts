@@ -28,7 +28,17 @@ export class ProfilePageComponent implements OnInit {
     this.route.queryParams.subscribe((params: Params) => {
       if (params['reservationSuccess']) {
         this.showMessage({
-          text: 'Reservation was successful.',
+          text: 'Reservation successful.',
+          type: 'success'
+        });
+      } else if (params['notAdmin']) {
+        this.showMessage({
+          text: 'You are NOT ADMIN.',
+          type: 'danger'
+        });
+      } else if (params['changeSave']) {
+        this.showMessage({
+          text: 'Change was saved',
           type: 'success'
         });
       }
