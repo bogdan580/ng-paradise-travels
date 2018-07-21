@@ -7,6 +7,7 @@ import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse
 import {ConfigService} from './config.service';
 import {User} from '../models/user.model';
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
+import {Address} from '../models/address.model';
 
 
 @Injectable()
@@ -45,6 +46,15 @@ export class UsersService {
     console.log(`Json: ` + JSON.stringify(user).toString());
     return this.http.put(this.configService.getBeckendUrl() + `/users/${user.id}`,
       JSON.stringify(user),
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      });
+  }
+
+  updateAddress(address: Address) {
+    console.log(`Json: ` + JSON.stringify(address).toString());
+    return this.http.put(this.configService.getBeckendUrl() + `/addresses/${address.id}`,
+      JSON.stringify(address),
       {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
       });

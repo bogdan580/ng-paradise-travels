@@ -28,7 +28,7 @@
                   aria-controls="collapse-1" role="button" href="#collapse-1">Update</a>
             <div class="collapse" id="collapse-1" style="padding-top:50px;">
               <form [formGroup]="formU" (ngSubmit)="onSubmitUser()">
-                    <input class="form-control" value="{{user.firstName}}" type="text"  formControlName="firstName" placeholder="Put new first name" style="margin:10px;">
+                    <input class="form-control" value="{{user.firstName}}" type="text" id="firstName" formControlName="firstName" placeholder="Put new first name" style="margin:10px;">
                     <input class="form-control" value="{{user.lastName}}" type="text" id="lastName" formControlName="lastName" placeholder="Put new last name" style="margin:10px;">
                     <input class="form-control" value="{{user.email}}" type="text" id="email" formControlName="email" placeholder="Put new email" style="margin:10px;">
                     <input class="form-control" type="password" id="password" formControlName="password" placeholder="Put new password" style="margin:10px;">
@@ -66,21 +66,17 @@
           <div><a class="btn btn-primary" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-2"
                   role="button" href="#collapse-2">Update</a>
             <div class="collapse" id="collapse-2">
-              <form><input class="form-control" type="text" value="{{user.address.address}}" placeholder="New address"
-                           style="margin-top:5px;margin-bottom:5px;">
+              <form [formGroup]="formA" (ngSubmit)="onSubmitAddress()">
+                <input class="form-control" type="text" id="address" formControlName="address" value="{{user.address.address}}" placeholder="New address" style="margin-top:5px;margin-bottom:5px;">
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" value="{{user.address.postalCode}}" placeholder="New ZIP"
-                                          style="margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" value="{{user.address.city}}" placeholder="New city"
-                                          style="margin-top:5px;margin-bottom:5px;"></div>
+                  <div class="col"><input class="form-control" type="text" id="zip" formControlName="zip" value="{{user.address.postalCode}}" placeholder="New ZIP" style="margin-top:5px;margin-bottom:5px;"></div>
+                  <div class="col"><input class="form-control" type="text" id="city" formControlName="city" value="{{user.address.city}}" placeholder="New city" style="margin-top:5px;margin-bottom:5px;"></div>
                 </div>
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" value="{{user.address.region}}" placeholder="New region"
-                                          style="margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" value="{{user.address.country}}" placeholder="New country"
-                                          style="margin-top:5px;margin-bottom:5px;"><a
-                    class="btn btn-success active float-right" role="button" href="#">Save</a></div>
+                  <div class="col"><input class="form-control" type="text" id="region" formControlName="region" value="{{user.address.region}}" placeholder="New region" style="margin-top:5px;margin-bottom:5px;"></div>
+                  <div class="col"><input class="form-control" type="text" id="country" formControlName="country" value="{{user.address.country}}" placeholder="New country" style="margin-top:5px;margin-bottom:5px;"></div>
                 </div>
+                <button class="btn btn-success float-right" type="submit" [disabled]="formA.invalid">Save</button>
               </form>
             </div>
           </div>

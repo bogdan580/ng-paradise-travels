@@ -9,6 +9,7 @@ import {Offer} from '../../shared/models/offer.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../shared/models/address.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
+import {add} from 'ngx-bootstrap/chronos';
 
 @Component({
   selector: 'wfm-profile-page',
@@ -27,9 +28,17 @@ export class ProfilePageComponent implements OnInit {
   ) {
     this.usersService.getLoggedUser()
     .subscribe((user: User) => {
-      console.log('hi');
+      console.log('getLoggedUser');
       console.log(user);
-      this.user = user;
+      if (user) {
+        this.user = user;
+      } else {
+        this.router.navigate(['/auth/login'], {
+          queryParams: {
+            nowCanLogin: true
+          }
+        });
+      }
     });
   }
 
@@ -64,6 +73,13 @@ export class ProfilePageComponent implements OnInit {
       'firstName': new FormControl(),
       'lastName': new FormControl()
     });
+    this.formA = new FormGroup({
+      'address': new FormControl(),
+      'zip': new FormControl(),
+      'city': new FormControl(),
+      'region': new FormControl(),
+      'country': new FormControl()
+    });
   }
   private showMessage(message: Message) {
     this.message = message;
@@ -82,9 +98,29 @@ export class ProfilePageComponent implements OnInit {
       this.user.address,
       email ? email : this.user.email,
       this.user.role, this.user.id);
-    // console.log(`Json: ` + JSON.stringify(user).toString());
+    console.log(`Json: ` + JSON.stringify(user).toString());
     this.usersService.updateUser(user).subscribe(() => {
       this.user = user;
+      this.router.navigate(['/profile'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });
+  }
+
+  onSubmitAddress() {
+    const {address, zip, city,  region, country} = this.formA.value;
+    console.log(this.formA.value);
+    const userAddress = new Address(address ? address : this.user.address.address,
+      zip ? zip : this.user.address.postalCode,
+      city ? city : this.user.address.city,
+      region ? region : this.user.address.region,
+      country ? country : this.user.address.country,
+      this.user.address.id);
+    // console.log(`Json: ` + JSON.stringify(userAddress).toString());
+    this.usersService.updateAddress(userAddress).subscribe(() => {
+      this.user.address = userAddress;
       this.router.navigate(['/profile'], {
         queryParams: {
           changeSave: true
