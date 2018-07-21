@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import {catchError} from 'rxjs/internal/operators';
 import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse.model';
 import {ConfigService} from './config.service';
 import {User} from '../models/user.model';
@@ -16,9 +15,7 @@ export class UsersService {
   constructor(
     private http: HttpClient,
     private configService: ConfigService
-  ) {
-
-  }
+  ) {}
 
   login(login: string, password: string): Observable<UserLoginResponseModel> {
     return this.http.post<UserLoginResponseModel>( this.configService.getBeckendUrl() + '/login',
@@ -42,6 +39,15 @@ export class UsersService {
 
   createNewUser(user: User): Observable<User> {
     return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
+  }
+
+  updateUser(user: User) {
+    console.log(`Json: ` + JSON.stringify(user).toString());
+    return this.http.put(this.configService.getBeckendUrl() + `/users/${user.id}`,
+      JSON.stringify(user),
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      });
   }
 
   getUserById(id: number): Observable<User> {

@@ -6,6 +6,9 @@ import {User} from '../../shared/models/user.model';
 import {ReservationService} from '../../shared/services/reservation.service';
 import {Reservation, Convert} from '../../shared/models/reservation.model';
 import {Offer} from '../../shared/models/offer.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Address} from '../../shared/models/address.model';
+import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
 
 @Component({
   selector: 'wfm-profile-page',
@@ -19,10 +22,19 @@ export class ProfilePageComponent implements OnInit {
   reserv: Reservation;
   constructor(  private router: Router,
                 private route: ActivatedRoute,
-                private userService: UsersService,
+                private usersService: UsersService,
                 private reservationService: ReservationService
-  ) { }
+  ) {
+    this.usersService.getLoggedUser()
+    .subscribe((user: User) => {
+      console.log('hi');
+      console.log(user);
+      this.user = user;
+    });
+  }
 
+  formU: FormGroup;
+  formA: FormGroup;
   ngOnInit() {
     this.message = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
@@ -43,13 +55,15 @@ export class ProfilePageComponent implements OnInit {
         });
       }
     });
-    this.userService.getLoggedUser()
-      .subscribe((user: User) => {
-        console.log('hi');
-        console.log(user);
-        this.user = user;
-      });
-  this.getReservation();
+    this.getReservation();
+
+    this.formU = new FormGroup({
+      'password': new FormControl(null, [ Validators.minLength(6)]),
+      'oldPassword': new FormControl(null, [Validators.required], this.notSamePasswords.bind(this)),
+      'email': new FormControl(),
+      'firstName': new FormControl(),
+      'lastName': new FormControl()
+    });
   }
   private showMessage(message: Message) {
     this.message = message;
@@ -58,12 +72,57 @@ export class ProfilePageComponent implements OnInit {
     }, 5000);
   }
 
+  onSubmitUser() {
+    const {password, firstName, lastName,  email} = this.formU.value;
+    // console.log(this.formU.value);
+    const user = new User( this.user.login,
+      password ? password : this.user.password,
+      firstName ? firstName : this.user.firstName,
+      lastName ? lastName : this.user.lastName,
+      this.user.address,
+      email ? email : this.user.email,
+      this.user.role, this.user.id);
+    // console.log(`Json: ` + JSON.stringify(user).toString());
+    this.usersService.updateUser(user).subscribe(() => {
+      this.user = user;
+      this.router.navigate(['/profile'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });
+  }
+
   getReservation(): void {
     this.reservationService.getReservations().subscribe(oferta => {
       this.reservs = Convert.toReservations(JSON.stringify(oferta));
 
       this.reserv = this.reservs.find(item => item.user.id === Number(this.user.id));
       console.log(this.reserv);
+    });
+  }
+
+  forbiddenEmails(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject)  => {
+      this.usersService.existUserEmail(control.value)
+        .subscribe((obj: PojoBooleanModel) => {
+          console.log(obj.value);
+          if (obj.value) {
+            resolve({forbiddenEmail: true});
+          } else {
+            resolve(null);
+          }
+        });
+    });
+  }
+
+  notSamePasswords(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject)  => {
+      if (control.value === this.user.password) {
+        resolve(null);
+      } else {
+        resolve({notSamePasswords: true});
+      }
     });
   }
 }

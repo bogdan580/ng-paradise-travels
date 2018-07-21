@@ -12,27 +12,71 @@
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body" style="margin-bottom:15px;">
           <div class="row">
-            <div class="col-xl-4 align-self-center mx-auto"><a class="d-block" href="assets/img/building.jpg" data-lightbox="photos">
-              <img class="img-fluid float-right" src="assets/img/config-sys.jpg"></a></div>
+            <div class="col-xl-4 align-self-center mx-auto">
+              <img class="img-fluid float-right" src="assets/img/config-sys.jpg"></div>
             <div class="col">
               <h3 class="text-right">Add user</h3>
               <hr style="margin-bottom:5px;">
               <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <input class="form-control" type="text" id="login" formControlName="login" placeholder="Put login" style="margin:10px;">
-                <input class="form-control" type="text" id="firstName" formControlName="firstName" placeholder="Put first name" style="margin:10px;">
-                <input class="form-control" type="text" id="lastName" formControlName="lastName" placeholder="Put last name" style="margin:10px;">
-                <input class="form-control" type="text" id="email" formControlName="email" placeholder="Put email" style="margin:10px;">
-                <input class="form-control" type="password" id="password" formControlName="password" placeholder="Put password" style="margin:10px;">
-                <input class="form-control" type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password" style="margin:10px;">
-                <select class="form-control" name="role" formControlName="role" style="margin:10px;"><optgroup label="Select user role"><option value="admin" selected="">admin</option><option value="user">user</option></optgroup></select>
-                <input  class="form-control" type="text" id="address" formControlName="address" placeholder="New address" style="margin:10px;margin-top:5px;margin-bottom:5px;">
+                <input class="form-control" type="text" id="login" formControlName="login" placeholder="Put login" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('login').invalid && form.get('login').touched">
+                   <span *ngIf="form.get('login')['errors']['required']">Login is empty!</span>
+                   <span *ngIf="form.get('login')['errors']['forbiddenLogin']">Login exists!</span>
+                </span>
+                <input class="form-control" type="text" id="firstName" formControlName="firstName" placeholder="Put first name" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('firstName').invalid && form.get('firstName').touched">
+                      <span *ngIf="form.get('firstName')['errors']['required']">First name is empty!</span>
+                </span>
+                <input class="form-control" type="text" id="lastName" formControlName="lastName" placeholder="Put last name" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('lastName').invalid && form.get('lastName').touched">
+                      <span *ngIf="form.get('lastName')['errors']['required']">Last name is empty!</span>
+                </span>
+                <input class="form-control" type="text" id="email" formControlName="email" placeholder="Put email" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('email').invalid && form.get('email').touched">
+                   <span *ngIf="form.get('email')['errors']['email']">Email is incorrect!</span>
+                   <span *ngIf="form.get('email')['errors']['required']">Email is empty!</span>
+                   <span *ngIf="form.get('email')['errors']['forbiddenEmail']">Email exist!</span>
+                </span>
+                <input class="form-control" type="password" id="password" formControlName="password" placeholder="Put password" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('password').invalid && form.get('password').touched">
+                    <span *ngIf="form.get('password')['errors']['required']">Password is empty!</span>
+                    <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+                    Password must be more {{form.get('password')['errors']['minlength']['requiredLength']}} symbols.
+                    You put {{form.get('password')['errors']['minlength']['actualLength']}}.
+                    </span>
+                </span>
+                <input class="form-control" type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirm password" style="margin:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('confirmPassword').invalid && form.get('confirmPassword').touched " >
+                    <span *ngIf="form.get('confirmPassword')['errors']['required']">Confirm password is empty!</span>
+                    <span *ngIf="form.get('confirmPassword')['errors']['notSamePasswords']">Passwords are not same!</span>
+                </span>
+                <select class="form-control" name="role" formControlName="role" style="margin:5px;"><optgroup label="Select user role"><option value="admin" selected="">admin</option><option value="user">user</option></optgroup></select>
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('role').invalid && form.get('role').touched">
+                   <span *ngIf="form.get('role')['errors']['required']">Role is empty!</span>
+                </span>
+                <input  class="form-control" type="text" id="address" formControlName="address" placeholder="New address" style="margin:5px;margin-top:5px;margin-bottom:5px;">
+                <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="form.get('address').invalid && form.get('address').touched">
+                   <span *ngIf="form.get('address')['errors']['required']">Address is empty!</span>
+                </span>
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" id="postalCode" formControlName="postalCode" placeholder="New ZIP" style="margin:10px;margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" id="City" formControlName="City" placeholder="New city" style="margin:10px;margin-top:5px;margin-bottom:5px;"></div>
+                  <div class="col"><input class="form-control" type="text" id="postalCode" formControlName="postalCode" placeholder="New ZIP" style="margin:5px;margin-top:5px;margin-bottom:5px;"></div>
+                  <span class="form-help-text" style="color:#fb494d;font-size:13px;margin:5px;" *ngIf="form.get('postalCode').invalid && form.get('postalCode').touched">
+                   <span *ngIf="form.get('postalCode')['errors']['required']">ZIP is empty!</span>
+                  </span>
+                  <div class="col"><input class="form-control" type="text" id="City" formControlName="City" placeholder="New city" style="margin:5px;margin-top:5px;margin-bottom:5px;"></div>
+                  <span class="form-help-text" style="color:#fb494d;font-size:13px;margin:5px;" *ngIf="form.get('City').invalid && form.get('City').touched">
+                   <span *ngIf="form.get('City')['errors']['required']">City is empty!</span>
+                  </span>
                 </div>
                 <div class="form-row">
-                  <div class="col"><input class="form-control" type="text" id="Region" formControlName="Region" placeholder="New region" style="margin:10px;margin-top:5px;margin-bottom:5px;"></div>
-                  <div class="col"><input class="form-control" type="text" id="Country" formControlName="Country" placeholder="New country" style="margin:10px;margin-top:5px;margin-bottom:5px;"></div>
+                  <div class="col"><input class="form-control" type="text" id="Region" formControlName="Region" placeholder="New region" style="margin:5px;margin-top:5px;margin-bottom:5px;"></div>
+                  <span class="form-help-text" style="color:#fb494d;font-size:13px;margin:5px;" *ngIf="form.get('Region').invalid && form.get('Region').touched">
+                   <span *ngIf="form.get('Region')['errors']['required']">Region is empty!</span>
+                  </span>
+                  <div class="col"><input class="form-control" type="text" id="Country" formControlName="Country" placeholder="New country" style="margin:5px;margin-top:5px;margin-bottom:5px;"></div>
+                  <span class="form-help-text" style="color:#fb494d;font-size:13px;margin:5px;" *ngIf="form.get('Country').invalid && form.get('Country').touched">
+                   <span *ngIf="form.get('Country')['errors']['required']">Country is empty!</span>
+                  </span>
                 </div><button class="btn btn-success float-right" type="submit" >Save</button>
               </form>
             </div>

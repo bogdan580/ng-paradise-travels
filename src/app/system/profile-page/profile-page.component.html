@@ -27,16 +27,23 @@
           <div><a class="btn btn-primary float-right" data-toggle="collapse" aria-expanded="false"
                   aria-controls="collapse-1" role="button" href="#collapse-1">Update</a>
             <div class="collapse" id="collapse-1" style="padding-top:50px;">
-              <form><input class="form-control" type="text" placeholder="Put new first name" style="margin:10px;"><input
-                class="form-control" type="text" placeholder="Put new second name" style="margin:10px;"><input
-                class="form-control" type="text"
-                placeholder="Put new email" style="margin:10px;"><input class="form-control" type="text"
-                                                                        placeholder="Put new password"
-                                                                        style="margin:10px;"><input class="form-control"
-                                                                                                    type="text"
-                                                                                                    placeholder="Confirm new password"
-                                                                                                    style="margin:10px;">
-                <button class="btn btn-success float-right" type="submit">Save</button>
+              <form [formGroup]="formU" (ngSubmit)="onSubmitUser()">
+                    <input class="form-control" value="{{user.firstName}}" type="text"  formControlName="firstName" placeholder="Put new first name" style="margin:10px;">
+                    <input class="form-control" value="{{user.lastName}}" type="text" id="lastName" formControlName="lastName" placeholder="Put new last name" style="margin:10px;">
+                    <input class="form-control" value="{{user.email}}" type="text" id="email" formControlName="email" placeholder="Put new email" style="margin:10px;">
+                    <input class="form-control" type="password" id="password" formControlName="password" placeholder="Put new password" style="margin:10px;">
+                    <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="formU.get('password').invalid && formU.get('password').touched">
+                        <span *ngIf="formU.get('password')['errors']['minlength'] && formU.get('password')['errors']['minlength']['requiredLength']">
+                        New password must be more {{formU.get('password')['errors']['minlength']['requiredLength']}} symbols.
+                        You put {{formU.get('password')['errors']['minlength']['actualLength']}}.
+                        </span>
+                    </span>
+                    <input class="form-control" type="password" id="oldPassword"  formControlName="oldPassword" placeholder="Your actual password" style="margin:10px;">
+                    <span class="form-help-text" style="color:#fb494d;font-size:13px;" *ngIf="formU.get('oldPassword').invalid && formU.get('oldPassword').touched">
+                        <span *ngIf="formU.get('oldPassword')['errors']['required']">Old password is empty!</span>
+                      <span *ngIf="formU.get('oldPassword')['errors']['notSamePasswords']">Old password is incorrect!</span>
+                     </span>
+                <button class="btn btn-success float-right" type="submit" [disabled]="formU.invalid">Save</button>
               </form>
             </div>
           </div>

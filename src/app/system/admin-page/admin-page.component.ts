@@ -47,6 +47,7 @@ export class AdminPageComponent implements OnInit {
     this.form = new FormGroup({
       'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      'confirmPassword': new FormControl(null, [Validators.required],  this.notSamePasswords.bind(this)),
       'email': new FormControl(null, [Validators.required, Validators.email],  this.forbiddenEmails.bind(this)),
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
@@ -55,7 +56,7 @@ export class AdminPageComponent implements OnInit {
       'City': new FormControl(null, [Validators.required]),
       'Region': new FormControl(null, [Validators.required]),
       'Country': new FormControl(null, [Validators.required]),
-      'role': new FormControl(null, [Validators.required]),
+      'role': new FormControl(null, [Validators.required])
     });
   }
 
@@ -71,7 +72,14 @@ export class AdminPageComponent implements OnInit {
     const {login, password, firstName, lastName, postalCode, email, address, city, region, country, role} = this.form.value;
     const addressObj = new Address(address, postalCode, city, region, country);
     const user = new User(login, password, firstName, lastName, addressObj, email, role);
-    this.usersService.createNewUser(user).subscribe();
+    this.usersService.createNewUser(user).subscribe(() => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });
+    this.form.reset();
   }
 
   forbiddenLogins (control: FormControl): Promise<any> {
@@ -99,6 +107,16 @@ export class AdminPageComponent implements OnInit {
             resolve(null);
           }
         });
+    });
+  }
+
+  notSamePasswords(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject)  => {
+      if (control.value === this.form.value.password) {
+        resolve(null);
+      } else {
+        resolve({notSamePasswords: true});
+      }
     });
   }
 
