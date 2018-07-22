@@ -25,13 +25,14 @@ export class SystemComponent implements OnInit {
     this.router.navigate(['/system/home']);
     this.usersService.getLoggedUser()
       .subscribe((user: User) => {
-        console.log(user);
-        console.log('xxxx');
-        this.user = user;
-        this.Check(this.user.role);
-        this.isLog = true;
-        console.log(this.user.role);
-        console.log(this.isAdm);
+        console.log('sys comp');
+        if (user) {
+          console.log(user);
+          this.user = user;
+          this.Check(this.user.role);
+          this.isLog = true;
+          console.log(this.user.role);
+        }
       });
   }
 

@@ -21,17 +21,26 @@ export class AdminPageComponent implements OnInit {
   constructor(private usersService: UsersService,
               private router: Router,
               private route: ActivatedRoute) {
-    usersService.getLoggedUser().subscribe((obj: User) => {
-      console.log(obj.role);
-      if (obj.role !== 'admin') {
-        this.router.navigate(['/profile'], {
+    this.usersService.getLoggedUser().subscribe((user: User) => {
+      console.log('admin user');
+      if (user) {
+        console.log(user.role);
+        console.log(user);
+        if (user.role !== 'admin') {
+          this.router.navigate(['/profile'], {
+            queryParams: {
+              notAdmin: true
+            }
+          });
+        }
+      } else {
+        this.router.navigate(['/auth/login'], {
           queryParams: {
-            notAdmin: true
+            nowCanLogin: true
           }
         });
       }
     });
-
   }
   form: FormGroup;
   ngOnInit() {
