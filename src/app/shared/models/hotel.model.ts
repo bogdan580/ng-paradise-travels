@@ -1,8 +1,8 @@
 import {Address} from './address.model';
-import {Jorney} from './jorney';
+import {Jorney} from './jorney.model';
 import {ReviewModel} from './review.model';
 
-export interface Hotel {
+export class Hotel {
     name: string;
     description: string;
     stars: number;
@@ -10,5 +10,9 @@ export interface Hotel {
     localJourneyList: Array<Jorney>;
     reviewList: Array<ReviewModel>;
     id?: number;
-
+    constructor( name,
+                 description,
+                 stars,
+                 address
+                 ) {}
 }

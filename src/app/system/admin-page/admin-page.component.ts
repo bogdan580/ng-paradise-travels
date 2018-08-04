@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AuthService} from '../../shared/services/auth.service';
 import {UsersService} from '../../shared/services/users.service';
@@ -8,6 +8,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
 import {Address} from '../../shared/models/address.model';
 import {Message} from '../../shared/models/message.model';
+import {OffersService} from '../../shared/services/offers.service';
+import {Hotel} from '../../shared/models/hotel.model';
+import {Jorney} from '../../shared/models/jorney.model';
+import {Offer} from '../../shared/models/offer.model';
 
 @Component({
   selector: 'wfm-admin-page',
@@ -17,14 +21,18 @@ import {Message} from '../../shared/models/message.model';
 export class AdminPageComponent implements OnInit {
 
   message: Message;
+  hotels: Hotel;
+  offers: Offer;
+  localJorneys: Jorney;
 
   constructor(private usersService: UsersService,
+              private offersService: OffersService,
               private router: Router,
               private route: ActivatedRoute) {
     this.usersService.getLoggedUser().subscribe((user: User) => {
       console.log('admin user');
       if (user) {
-        console.log(user.role);
+        console.log('Role: ' + user.role);
         console.log(user);
         if (user.role !== 'admin') {
           this.router.navigate(['/profile'], {
@@ -40,9 +48,19 @@ export class AdminPageComponent implements OnInit {
           }
         });
       }
+
+      this.getHotels();
+      this.getOffers();
+      this.getLocalJorneys();
     });
   }
+
   form: FormGroup;
+  formAddLJ: FormGroup;
+  formDelJorney: FormGroup;
+  formAddOf: FormGroup;
+  formDelOf: FormGroup;
+
   ngOnInit() {
     this.message = new Message('danger', '');
     this.route.queryParams.subscribe((params: Params) => {
@@ -53,6 +71,7 @@ export class AdminPageComponent implements OnInit {
         });
       }
     });
+
     this.form = new FormGroup({
       'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
@@ -67,6 +86,39 @@ export class AdminPageComponent implements OnInit {
       'Country': new FormControl(null, [Validators.required]),
       'role': new FormControl(null, [Validators.required])
     });
+
+    this.formAddLJ = new FormGroup({
+      'idHotel': new FormControl(null, [Validators.required]),
+      'jorneyName': new FormControl(null, [Validators.required]),
+      'price': new FormControl(null, [Validators.required]),
+      'languageGuide': new FormControl(null, [Validators.required]),
+      'durationTime': new FormControl(null, [Validators.required]),
+      'description': new FormControl(null, [Validators.required])
+    });
+
+    this.formAddOf = new FormGroup({
+      'nameHotel': new FormControl(null, [Validators.required]),
+      'descriptionHotel': new FormControl(null, [Validators.required]),
+      'starsHotel': new FormControl(null, [Validators.required]),
+      'street': new FormControl(null, [Validators.required]),
+      'postal': new FormControl(null, [Validators.required]),
+      'city': new FormControl(null, [Validators.required]),
+      'region': new FormControl(null, [Validators.required]),
+      'country': new FormControl(null, [Validators.required]),
+      'offerName': new FormControl(null, [Validators.required]),
+      'dateFrom': new FormControl(null, [Validators.required]),
+      'dateTo': new FormControl(null, [Validators.required]),
+      'promoted': new FormControl(null, [Validators.required]),
+      'shortDesc': new FormControl(null, [Validators.required]),
+      'desc': new FormControl(null, [Validators.required])
+    });
+
+    this.formDelOf = new FormGroup({
+      'idOffer': new FormControl(null, [Validators.required])
+    });
+    this.formDelJorney = new FormGroup({
+      'idJorney': new FormControl(null, [Validators.required])
+    });
   }
 
   private showMessage(message: Message) {
@@ -76,6 +128,26 @@ export class AdminPageComponent implements OnInit {
     }, 5000);
   }
 
+  getHotels(): void {
+    console.log('getHotels');
+    this.offersService.getHotels().subscribe(hotelList => {
+      this.hotels = hotelList;
+    });
+  }
+
+  getOffers(): void {
+    console.log('getOffers');
+    this.offersService.getOffers().subscribe(offerList => {
+      this.offers = offerList;
+    });
+  }
+
+  getLocalJorneys(): void {
+    console.log('getLocalJorneys');
+    this.offersService.getLocalJorneys().subscribe(localJorneysList => {
+      this.localJorneys = localJorneysList;
+    });
+  }
 
   onSubmit() {
     const {login, password, firstName, lastName, postalCode, email, address, city, region, country, role} = this.form.value;
@@ -90,6 +162,32 @@ export class AdminPageComponent implements OnInit {
     });
     this.form.reset();
   }
+
+  onSubmitAddOf() {
+    const {nameHotel, descriptionHotel, starsHotel, street, postal, city, region, country, offerName, dateFrom,
+            dateTo, promoted, shortDesc, desc} = this.formAddOf.value;
+    const address = new Address(street, postal, city, region, country);
+    const hotel = new Hotel(nameHotel, descriptionHotel, starsHotel, address);
+    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, '10' );
+    console.log(`Json: ` + JSON.stringify(offer).toString());
+  }
+
+  onSubmitAddLJ() {
+    const {idHotel, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
+    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide/*, idHotel*/);
+    console.log(`Json: ` + JSON.stringify(localJorney).toString());
+  }
+
+  onSubmitDelOf() {
+    const {idOffer} = this.formDelOf.value;
+    console.log(`del offer ` + idOffer);
+  }
+
+  onSubmitDelLocalJorney() {
+    const {idJorney} = this.formDelJorney.value;
+    console.log(`del local jorney ` + idJorney);
+  }
+
 
   forbiddenLogins (control: FormControl): Promise<any> {
     return new Promise((resolve, reject)  => {

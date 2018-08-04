@@ -7,8 +7,10 @@ import {ConfigService} from './config.service';
 import {UserLoginResponseModel} from '../models/responseModels/userLoginResponse.model';
 import {OfferBuyRequestModel} from '../models/requestModel/OfferBuyRequest.model';
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
+import {Hotel} from '../models/hotel.model';
+import {Jorney} from '../models/jorney.model';
 
-@Injectable({ providedIn: 'root'})
+@Injectable({providedIn: 'root'})
 export class OffersService {
   constructor(private http: HttpClient,
               private configService: ConfigService) {
@@ -17,6 +19,14 @@ export class OffersService {
 
   getOffers(): Observable<Offer> {
     return this.http.get<Offer>(this.configService.getBeckendUrl() + '/offers');
+  }
+
+  getHotels(): Observable<Hotel> {
+    return this.http.get<Hotel>(this.configService.getBeckendUrl() + '/hotels');
+  }
+
+  getLocalJorneys(): Observable<Jorney> {
+    return this.http.get<Jorney>(this.configService.getBeckendUrl() + '/local-journeys');
   }
 
   buy(offerBuyRequestModel: OfferBuyRequestModel): Observable<PojoBooleanModel> {

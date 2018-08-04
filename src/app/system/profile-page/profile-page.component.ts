@@ -18,7 +18,7 @@ import {add} from 'ngx-bootstrap/chronos';
 })
 export class ProfilePageComponent implements OnInit {
   message: Message;
-  user: User;
+  user: User ;
   reservs: Array<Reservation>;
   reserv: Reservation;
   constructor(  private router: Router,

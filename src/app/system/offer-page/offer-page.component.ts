@@ -5,7 +5,7 @@ import {Offer, Convert} from '../../shared/models/offer.model';
 import {Router, ActivatedRoute, Params, ParamMap} from '@angular/router';
 import {switchMap} from 'rxjs/internal/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Jorney} from '../../shared/models/jorney';
+import {Jorney} from '../../shared/models/jorney.model';
 import {OfferBuyRequestModel} from '../../shared/models/requestModel/OfferBuyRequest.model';
 import {UserLoginResponseModel} from '../../shared/models/responseModels/userLoginResponse.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';

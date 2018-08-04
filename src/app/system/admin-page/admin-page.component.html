@@ -103,7 +103,7 @@
               </optgroup>
             </select>
             <hr>
-            <h6 class="text-muted mb-2" style="margin:10px;">Address</h6><input class="form-control" type="text" name="address2" placeholder="Address" style="margin:10px;"><input class="form-control" type="text" name="postalCode" placeholder="Postal code" style="margin:10px;">
+            <h6 class="text-muted mb-2" style="margin:10px;">Address</h6><input class="form-control" type="text" name="address2" placeholder="Street" style="margin:10px;"><input class="form-control" type="text" name="postalCode" placeholder="Postal code" style="margin:10px;">
             <input
               class="form-control" type="text" name="city" placeholder="City" style="margin:10px;"><input class="form-control" type="text" name="region" placeholder="Region" style="margin:10px;"><input class="form-control" type="text" name="country" placeholder="Country" style="margin:10px;">
             <hr>
@@ -122,11 +122,18 @@
           <div class="row">
             <div class="col">
               <h4 style="margin-bottom:15px;">Delete offer</h4>
-              <form><select class="form-control"><optgroup label="Id offer"><option value="1">1</option><option value="2">2</option></optgroup></select><button class="btn btn-danger float-right" type="submit" style="margin-top:10px;">Delete</button></form>
+              <form [formGroup]="formDelOf" (ngSubmit)="onSubmitDelOf()">
+                <select class="form-control" formControlName="idOffer" >
+                  <optgroup label="Id offer" >
+                    <option *ngFor="let offer of offers;" value="{{offer.id}}">{{offer.name}}</option>
+                  </optgroup>
+                </select>
+                <button class="btn btn-danger float-right" type="submit" style="margin-top:10px;">Delete</button>
+              </form>
             </div>
           </div>
           <hr>
-          <h4 class="text-left card-title" style="margin-top:12px;">Offer name</h4>
+          <h4 class="text-left card-title" style="margin-top:12px;">Offer </h4>
           <hr>
           <h4 class="text-left card-title" style="margin-top:12px;">Hotel name</h4>
           <h4 class="text-left card-title" style="margin-top:12px;">Date from</h4>
@@ -137,10 +144,19 @@
         <div class="card-body">
           <h4 class="text-left card-title">Add local journey</h4>
           <h6 style="margin:10px;">Hotel</h6>
-          <form><select class="form-control" name="hotel" style="margin:10px;"><optgroup label="Hotel"><option value="1">1</option><option value="2">2</option></optgroup></select><input class="form-control" type="text" name="offerName" placeholder="Name"
-                                                                                                                                                                                            style="margin:10px;"><input class="form-control" type="text" name="price" placeholder="Price" style="margin:10px;"><input class="form-control" type="text" name="languageGuide" placeholder="Language guide" style="margin:10px;">
-            <input
-              class="form-control" type="text" name="durationTime" placeholder="Duration time" style="margin:10px;"><textarea class="form-control" name="description" placeholder="Description" style="margin:10px;"></textarea><button class="btn btn-success float-right" type="submit">Save</button></form>
+          <form [formGroup]="formAddLJ" (ngSubmit)="onSubmitAddLJ()">
+            <select class="form-control" formControlName="idHotel" style="margin:10px;">
+              <optgroup label="Hotel" >
+                <option *ngFor="let hotel of hotels;" value="{{hotel.id}}">{{hotel.name}}</option>
+              </optgroup>
+            </select>
+            <input class="form-control" type="text" id="jorneyName" formControlName="jorneyName" placeholder="Name" style="margin:10px;">
+            <input class="form-control" type="text" id="price" formControlName="price" placeholder="Price" style="margin:10px;">
+            <input class="form-control" type="text" id="languageGuide" formControlName="languageGuide" placeholder="Language guide" style="margin:10px;">
+            <input class="form-control" type="text" id="durationTime" formControlName="durationTime" placeholder="Duration time" style="margin:10px;">
+            <textarea class="form-control" id="description" formControlName="description" placeholder="Description" style="margin:10px;"></textarea>
+            <button class="btn btn-success float-right" type="submit">Save</button>
+          </form>
         </div>
       </div>
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
@@ -148,11 +164,17 @@
           <div class="row">
             <div class="col">
               <h4 style="margin-bottom:15px;">Delete journey</h4>
-              <form><select class="form-control"><optgroup label="Id offer"><option value="1">1</option><option value="2">2</option></optgroup></select><button class="btn btn-danger float-right" type="submit" style="margin-top:10px;">Delete</button></form>
+              <form [formGroup]="formDelJorney" (ngSubmit)="onSubmitDelLocalJorney()">
+                <select class="form-control"  formControlName="idJorney">
+                  <optgroup label="Id jorney">
+                    <option *ngFor="let jorney of localJorneys;" value="{{jorney.id}}">{{ jorney.name}}</option>
+                  </optgroup>
+                </select>
+                <button class="btn btn-danger float-right" type="submit" style="margin-top:10px;">Delete</button></form>
             </div>
           </div>
           <hr>
-          <h4 class="text-left card-title" style="margin-top:12px;">Journey name</h4>
+          <h4 class="text-left card-title" style="margin-top:12px;"></h4>
         </div>
       </div>
     </div>

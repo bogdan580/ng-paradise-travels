@@ -1,7 +1,7 @@
 import {Hotel} from './hotel.model';
-import {Jorney} from './jorney';
+import {Jorney} from './jorney.model';
 
-export interface Offer {
+export class Offer {
     hotel: Hotel;
     dateFrom: string;
     dateTo: string;
@@ -11,7 +11,7 @@ export interface Offer {
     shortDescription: string;
     pricePerDayPerPerson: number;
     id?: number;
-
+    constructor(hotel, dateFrom, dateTo, name, promoted, description, shortDescription, pricePerDayPerPerson) {}
 }
 
 export namespace Convert {

@@ -22,7 +22,7 @@ export class SystemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.router.navigate(['/system/home']);
+   // this.router.navigate(['/home']);
     this.usersService.getLoggedUser()
       .subscribe((user: User) => {
         console.log('sys comp');

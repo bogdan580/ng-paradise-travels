@@ -16,7 +16,7 @@
               <a class="d-block">
               <img class="img-fluid" src="assets/img/user.png">
               </a></div>
-            <div class="col">
+            <div class="col" *ngIf="user;">
               <h3 class="text-right">{{user.firstName}} {{user.lastName}}</h3>
               <hr style="margin-bottom:5px;">
               <h6 class="text-right text-muted mb-2">{{user.role}}</h6>
@@ -76,7 +76,7 @@
                   <div class="col"><input class="form-control" type="text" id="region" formControlName="region" value="{{user.address.region}}" placeholder="New region" style="margin-top:5px;margin-bottom:5px;"></div>
                   <div class="col"><input class="form-control" type="text" id="country" formControlName="country" value="{{user.address.country}}" placeholder="New country" style="margin-top:5px;margin-bottom:5px;"></div>
                 </div>
-                <button class="btn btn-success float-right" type="submit" [disabled]="formA.invalid">Save</button>
+                <button class="btn btn-success float-right" type="submit" >Save</button>
               </form>
             </div>
           </div>
@@ -119,4 +119,4 @@
       <!--</div>-->
     <!--</div>-->
   <!--</div>-->
-<!--</div>-->
+</div>
