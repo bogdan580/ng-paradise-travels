@@ -28,8 +28,6 @@ function numberOfBedValidator(control: AbstractControl) {
       return null;
 }
 
-
-
 @Component({
   selector: 'wfm-offer-page',
   templateUrl: './offer-page.component.html',
@@ -51,10 +49,7 @@ export class OfferPageComponent implements OnInit {
     route.
     params.
     subscribe(params => {
-      console.log(params);
       this.selectedId = params;
-      console.log(this.selectedId);
-      console.log(this.selectedId.id);
     });
     this.getOffers();
 
@@ -72,8 +67,7 @@ export class OfferPageComponent implements OnInit {
       this.offers = Convert.toOffers(JSON.stringify(oferta));
 
       this.oferty = this.offers.find(item => item.id === Number(this.selectedId.id));
-      console.log(this.selectedId.id);
-      console.log(this.oferty);
+
       this.hotelStars = new Array(this.oferty.hotel.stars);
       this.addJourneysFormControl(this.oferty.hotel.localJourneyList);
 
@@ -101,7 +95,7 @@ export class OfferPageComponent implements OnInit {
       }
     }
 
-    console.log(this.form.value);
+
     offerBuyRequestModel.offerId = this.oferty.id;
 
     const {numberOfCustomers, from, to, numberOfOnePersonBed, numberOfTwoPersonBed} = this.form.value;
@@ -112,7 +106,6 @@ export class OfferPageComponent implements OnInit {
     offerBuyRequestModel.numberOfTwoPersonBed = numberOfTwoPersonBed;
 
     this.offersService.buy(offerBuyRequestModel).subscribe((pojoBooleanModel: PojoBooleanModel) => {
-      console.log(pojoBooleanModel);
       alert('oferta zakupiona!');
       this.router.navigate(['/profile']);
     });
@@ -127,9 +120,21 @@ export class OfferPageComponent implements OnInit {
       const diff = Math.abs(new Date(this.form.get('to').value).getTime() - new Date(this.form.get('from').value).getTime());
       diffInDay = Math.ceil(diff / (1000 * 3600 * 24));
     }
-    console.log(diffInDay);
+    diffInDay++;
 
     totalPrice = totalPrice * diffInDay;
+
+    for (const key of Object.keys(this.form.value)) {
+      const val = this.form.value[key];
+
+      if (key.startsWith('journey') && val === true) {
+        const arr = key.split('.');
+        const journeyId = Number(arr[1]);
+
+        const localJurney = this.oferty.hotel.localJourneyList.find(item => item.id === journeyId);
+        totalPrice = totalPrice + localJurney.price * this.form.get('numberOfCustomers').value;
+      }
+    }
 
     return totalPrice;
   }
