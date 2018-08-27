@@ -20,7 +20,9 @@ export class ProfilePageComponent implements OnInit {
   message: Message;
   user: User ;
   reservs: Array<Reservation>;
+  reserver: Reservation [];
   reserv: Reservation;
+  isNull: boolean;
   constructor(  private router: Router,
                 private route: ActivatedRoute,
                 private usersService: UsersService,
@@ -132,9 +134,15 @@ export class ProfilePageComponent implements OnInit {
   getReservation(): void {
     this.reservationService.getReservations().subscribe(oferta => {
       this.reservs = Convert.toReservations(JSON.stringify(oferta));
-
-      this.reserv = this.reservs.find(item => item.user.id === Number(this.user.id));
-      console.log(this.reserv);
+     // this.reserv = this.reservs.find(item => item.user.id === Number(this.user.id));
+      this.reserver = this.reservs.filter(item => item.user.id === Number(this.user.id));
+      if (this.reserver.length === 0) {
+        this.isNull = true;
+      }
+      console.log(this.reservs);
+     // console.log(this.reserv);
+      console.log(this.reserver);
+      console.log(this.isNull);
     });
   }
 
