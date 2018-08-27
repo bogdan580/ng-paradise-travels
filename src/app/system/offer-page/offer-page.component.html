@@ -95,6 +95,9 @@
             </div>
 
             <h4 class="text-center mb-0" style="margin:10px;">Rooms</h4>
+            <span style="color: red; padding: 15px" class="error" *ngIf="form.hasError('numberOfBed') && form.touched">
+                  <span>count of beds is invalid</span>
+            </span>
             <div class="form-group" style="margin-top:5px;" [ngClass]="{'has-error': form.get('numberOfOnePersonBed').invalid && form.get('numberOfOnePersonBed').touched}">
               <div class="col">
 
@@ -103,8 +106,6 @@
 
                 <span class="form-help-text" *ngIf="form.get('numberOfOnePersonBed').invalid && form.get('numberOfOnePersonBed').touched">
                   <span *ngIf="form.get('numberOfOnePersonBed')['errors']['required']">Value is empty!</span>
-                  <span *ngIf="form.get('numberOfOnePersonBed')['errors']['min']">You can put only value form 1 to 10</span>
-                  <span *ngIf="form.get('numberOfOnePersonBed')['errors']['max']">You can put only value form 1 to 10</span>
                 </span>
 
               </div>

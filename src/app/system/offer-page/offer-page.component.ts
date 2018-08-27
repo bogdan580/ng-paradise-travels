@@ -4,11 +4,31 @@ import {OffersService} from '../../shared/services/offers.service';
 import {Offer, Convert} from '../../shared/models/offer.model';
 import {Router, ActivatedRoute, Params, ParamMap} from '@angular/router';
 import {switchMap} from 'rxjs/internal/operators';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Jorney} from '../../shared/models/jorney.model';
 import {OfferBuyRequestModel} from '../../shared/models/requestModel/OfferBuyRequest.model';
 import {UserLoginResponseModel} from '../../shared/models/responseModels/userLoginResponse.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
+import * as domain from 'domain';
+import {setOffsetToUTC} from 'ngx-bootstrap/chronos/units/offset';
+
+
+function numberOfBedValidator(control: AbstractControl) {
+      const numberOfOnePersonBed = control.get('numberOfOnePersonBed').value;
+      const numberOfTwoPersonBed = control.get('numberOfTwoPersonBed').value;
+      const numberOfCustomers = control.get('numberOfCustomers').value;
+
+      if (numberOfOnePersonBed + numberOfTwoPersonBed * 2 !== numberOfCustomers ) {
+        return {
+          numberOfBed: {
+            parsedDomain: 'xxx'
+          }
+        };
+      }
+      return null;
+}
+
+
 
 @Component({
   selector: 'wfm-offer-page',
@@ -44,7 +64,7 @@ export class OfferPageComponent implements OnInit {
       'to': new FormControl(null, [Validators.required]),
       'numberOfOnePersonBed': new FormControl(null, [Validators.required]),
       'numberOfTwoPersonBed': new FormControl(null, [Validators.required]),
-    });
+    }, [numberOfBedValidator]);
 
   }
   getOffers(): void {
