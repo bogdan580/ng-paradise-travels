@@ -9,7 +9,7 @@ import {Jorney} from '../../shared/models/jorney.model';
 import {OfferBuyRequestModel} from '../../shared/models/requestModel/OfferBuyRequest.model';
 import {UserLoginResponseModel} from '../../shared/models/responseModels/userLoginResponse.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
-import * as domain from 'domain';
+// import * as domain from 'domain';
 import {setOffsetToUTC} from 'ngx-bootstrap/chronos/units/offset';
 
 
