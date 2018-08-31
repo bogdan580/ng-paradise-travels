@@ -90,9 +90,11 @@
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
           <h4 style="margin-bottom:15px;">Add offer</h4>
-          <form>
-            <h6 class="text-muted mb-2" style="margin:10px;">Hotel</h6><input class="form-control" type="text" name="hotelName" placeholder="Name" style="margin:10px;"><textarea class="form-control" name="hotelDescription" placeholder="Description" style="margin:10px;"></textarea>
-            <select
+          <form [formGroup]="formAddOf" (ngSubmit)="onSubmitAddOf()">
+            <h6 class="text-muted mb-2" style="margin:10px;">Hotel</h6>
+            <input class="form-control" type="text" name="nameHotel" id="nameHotel" formControlName="nameHotel" placeholder="Name of Hotel" style="margin:10px;">
+            <textarea class="form-control" name="descriptionHotel" id="descriptionHotel" formControlName="descriptionHotel" placeholder="Description" style="margin:10px;"></textarea>
+            <select id="starsHotel" formControlName="starsHotel"
               class="form-control" name="stars" style="margin:10px;">
               <optgroup label="Stars">
                 <option value="1">1</option>
@@ -103,16 +105,31 @@
               </optgroup>
             </select>
             <hr>
-            <h6 class="text-muted mb-2" style="margin:10px;">Address</h6><input class="form-control" type="text" name="address2" placeholder="Street" style="margin:10px;"><input class="form-control" type="text" name="postalCode" placeholder="Postal code" style="margin:10px;">
-            <input
-              class="form-control" type="text" name="city" placeholder="City" style="margin:10px;"><input class="form-control" type="text" name="region" placeholder="Region" style="margin:10px;"><input class="form-control" type="text" name="country" placeholder="Country" style="margin:10px;">
+            <h6 class="text-muted mb-2" style="margin:10px;">Street</h6>
+            <input class="form-control" type="text" name="street" id="street" formControlName="street" placeholder="Street" style="margin:10px;">
+            <input class="form-control" type="text" name="postalCode"  id="postal" formControlName="postal" placeholder="Postal code" style="margin:10px;">
+            <input class="form-control" type="text" name="city"  id="cityOF" formControlName="city" placeholder="City" style="margin:10px;">
+            <input class="form-control" type="text" name="region"  id="regionOF" formControlName="region" placeholder="Region" style="margin:10px;">
+            <input class="form-control" type="text" name="country"  id="countryOF" formControlName="country" placeholder="Country" style="margin:10px;">
             <hr>
-            <h6 class="text-muted mb-2" style="margin:10px;">Offer</h6><input class="form-control" type="text" name="offerName" placeholder="Name" style="margin:10px;">
-            <h6 style="margin:10px;">Date from</h6><input class="form-control" type="date" style="margin:10px;">
-            <h6 style="margin:10px;">Date to</h6><input class="form-control" type="date" style="margin:10px;"><input class="form-control" type="text" name="city" placeholder="City" style="margin:10px;">
-            <h6 style="margin:10px;">Promoted</h6><select class="form-control" name="role" style="margin:10px;"><optgroup label="Promoted"><option value="true">yes</option><option value="false" selected="">no</option></optgroup></select><input class="form-control"
-                                                                                                                                                                                                                                                    type="text" name="shortDescription" placeholder="Short description" style="margin:10px;"><textarea class="form-control" name="description" placeholder="Description" style="margin:10px;"></textarea><button class="btn btn-success float-right"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                 type="submit">Save</button></form>
+            <h6 class="text-muted mb-2" style="margin:10px;">Offer</h6>
+            <input class="form-control" type="text" name="offerName" id="offerName" formControlName="offerName" placeholder="Name" style="margin:10px;">
+            <h6 style="margin:10px;">Date from</h6>
+            <input class="form-control" type="date" id="dateFrom" formControlName="dateFrom" style="margin:10px;">
+            <h6 style="margin:10px;">Date to</h6>
+            <input class="form-control" type="date" id="dateTo" formControlName="dateTo" style="margin:10px;">
+            <h6 style="margin:10px;">Promoted</h6>
+            <select class="form-control" name="role" id="promoted" formControlName="promoted" style="margin:10px;">
+            <optgroup label="Promoted">
+              <option value="true">yes</option>
+              <option value="false" selected="">no</option>
+            </optgroup>
+            </select>
+            <input class="form-control" type="text" name="shortDescription" id="shortDesc" formControlName="shortDesc" placeholder="Short description" style="margin:10px;">
+            <textarea class="form-control" name="description" id="desc" formControlName="desc" placeholder="Description" style="margin:10px;"></textarea>
+            <input class="form-control" type="text" name="pricePerDay" id="pricePerDay" formControlName="pricePerDay" placeholder="Price per day" style="margin:10px;">
+            <button class="btn btn-success float-right" type="submit">Save</button>
+          </form>
         </div>
       </div>
     </div>

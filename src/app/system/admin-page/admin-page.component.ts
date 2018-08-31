@@ -110,7 +110,8 @@ export class AdminPageComponent implements OnInit {
       'dateTo': new FormControl(null, [Validators.required]),
       'promoted': new FormControl(null, [Validators.required]),
       'shortDesc': new FormControl(null, [Validators.required]),
-      'desc': new FormControl(null, [Validators.required])
+      'desc': new FormControl(null, [Validators.required]),
+      'pricePerDay': new FormControl(null, [Validators.required])
     });
 
     this.formDelOf = new FormGroup({
@@ -165,10 +166,10 @@ export class AdminPageComponent implements OnInit {
 
   onSubmitAddOf() {
     const {nameHotel, descriptionHotel, starsHotel, street, postal, city, region, country, offerName, dateFrom,
-            dateTo, promoted, shortDesc, desc} = this.formAddOf.value;
+            dateTo, promoted, shortDesc, desc, pricePerDay} = this.formAddOf.value;
     const address = new Address(street, postal, city, region, country);
     const hotel = new Hotel(nameHotel, descriptionHotel, starsHotel, address);
-    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, '10' );
+    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, pricePerDay );
     console.log(`Json: ` + JSON.stringify(offer).toString());
   }
 

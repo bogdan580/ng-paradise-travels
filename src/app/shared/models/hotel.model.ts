@@ -3,16 +3,13 @@ import {Jorney} from './jorney.model';
 import {ReviewModel} from './review.model';
 
 export class Hotel {
-    name: string;
-    description: string;
-    stars: number;
-    address: Address;
-    localJourneyList: Array<Jorney>;
-    reviewList: Array<ReviewModel>;
-    id?: number;
-    constructor( name,
-                 description,
-                 stars,
-                 address
-                 ) {}
+    constructor(
+      public name: string,
+      public description: string,
+      public stars: number,
+      public address: Address,
+      public localJourneyList?: Array<Jorney>,
+      public reviewList?: Array<ReviewModel>,
+      public id?: number
+    ) {}
 }

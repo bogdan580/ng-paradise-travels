@@ -2,16 +2,17 @@ import {Hotel} from './hotel.model';
 import {Jorney} from './jorney.model';
 
 export class Offer {
-    hotel: Hotel;
-    dateFrom: string;
-    dateTo: string;
-    name: string;
-    promoted: boolean;
-    description: string;
-    shortDescription: string;
-    pricePerDayPerPerson: number;
-    id?: number;
-    constructor(hotel, dateFrom, dateTo, name, promoted, description, shortDescription, pricePerDayPerPerson) {}
+  constructor(public hotel: Hotel,
+              public dateFrom: string,
+              public dateTo: string,
+              public name: string,
+              public promoted: boolean,
+              public description: string,
+              public shortDescription: string,
+              public pricePerDayPerPerson: number,
+              public id?: number
+  ) {
+  }
 }
 
 export namespace Convert {
