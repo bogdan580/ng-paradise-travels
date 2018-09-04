@@ -103,6 +103,7 @@
           <h4>Number of one person bed: {{item.numberofonepersonbed}}, Number of two person bed: {{item.numberoftwopersonbed}}</h4>
           <h4>Reservation data: {{item.dateFrom | date:"fullDate" }} - {{item.dateTo | date:"fullDate" }}</h4>
           <h4>Reservation status: {{item.reservationstatus}}</h4>
+          <a class="btn btn-info" href="{{invoiceAdress}}{{item.id}}/pdf" role="button">Generate invoice</a>
         </div>
       </div>
     </div>

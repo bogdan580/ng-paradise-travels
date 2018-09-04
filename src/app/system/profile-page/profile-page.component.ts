@@ -23,6 +23,7 @@ export class ProfilePageComponent implements OnInit {
   reserver: Reservation [];
   reserv: Reservation;
   isNull: boolean;
+  invoiceAdress: string;
   constructor(  private router: Router,
                 private route: ActivatedRoute,
                 private usersService: UsersService,
@@ -143,6 +144,7 @@ export class ProfilePageComponent implements OnInit {
      // console.log(this.reserv);
       console.log(this.reserver);
       console.log(this.isNull);
+      this.invoiceAdress = 'http://77.55.193.96:8080/paradiseTravels/invoices/reservation/';
     });
   }
 

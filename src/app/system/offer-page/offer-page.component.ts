@@ -38,6 +38,7 @@ export class OfferPageComponent implements OnInit {
   offers: Array<Offer>;
   oferty: Offer;
   hotelStars: number[];
+  forecast: Array<any>;
   public selectedId: any;
   constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router, ) {
   }
@@ -52,7 +53,6 @@ export class OfferPageComponent implements OnInit {
       this.selectedId = params;
     });
     this.getOffers();
-
     this.form = new FormGroup({
       'numberOfCustomers': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(10)]),
       'from': new FormControl(null, [Validators.required]),
@@ -67,13 +67,20 @@ export class OfferPageComponent implements OnInit {
       this.offers = Convert.toOffers(JSON.stringify(oferta));
 
       this.oferty = this.offers.find(item => item.id === Number(this.selectedId.id));
-
+    console.log(this.oferty);
       this.hotelStars = new Array(this.oferty.hotel.stars);
       this.addJourneysFormControl(this.oferty.hotel.localJourneyList);
 
+      this.getForecast();
     });
   }
-
+  getForecast(): void {
+    this.offersService.getWeather(this.oferty.hotel.address.city).subscribe(pogoda => {
+      this.forecast = pogoda;
+      console.log(this.forecast);
+      console.log(this.oferty.hotel.address.city);
+    });
+  }
   addJourneysFormControl(jorneys: Jorney[]) {
     for (const journey of jorneys) {
       this.form.addControl('journey.' + journey.id, new FormControl(null, []));

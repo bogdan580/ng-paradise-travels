@@ -28,6 +28,9 @@ export class OffersService {
   getLocalJorneys(): Observable<Jorney[]> {
     return this.http.get<Jorney[]>(this.configService.getBeckendUrl() + '/local-journeys');
   }
+  getWeather(city: string): Observable<any> {
+    return this.http.get<any>(this.configService.getWeatherUrl() + 'q=' + city + '&units=metric&appid=10c30b170fc663080002c992eca0407b');
+  }
 
   buy(offerBuyRequestModel: OfferBuyRequestModel): Observable<PojoBooleanModel> {
     return this.http.post<PojoBooleanModel>( this.configService.getBeckendUrl() + '/offers/buy',

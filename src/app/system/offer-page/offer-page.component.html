@@ -49,7 +49,7 @@
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body" style="margin-bottom:15px;">
           <h4 class="text-right card-title">{{oferty.pricePerDayPerPerson}} $</h4>
-          <p class="card-text">Adres : </p>
+          <p class="card-text" align="center">Address</p>
           <p class="card-text">Country: {{oferty.hotel.address.country}}</p>
           <p class="card-text">City: {{oferty.hotel.address.city}}</p>
           <p class="card-text">Street: {{oferty.hotel.address.address}}</p>
@@ -171,9 +171,25 @@
         <div class="card-body">
           <div class="row">
             <div class="col">
-              <h4 class="text-center" style="margin-bottom:15px;">Pogoda</h4>
-              <h6 class="text-right text-muted mb-2">Subtitles</h6>
-              Usunąłem
+              <h4 class="text-center" style="margin-bottom:15px;">Forecast</h4>
+              <table border="solid black 1px">
+                <tr>
+                  <th>Date</th>
+                  <th>Temperature (°C)</th>
+                  <th>Pressure (hPa)</th>
+                  <th>Weather</th>
+                  <th>Wind (m/s)</th>
+                </tr>
+                <ng-container *ngFor="let item of forecast.list; let i=index">
+              <tr *ngIf="i%4==0">
+                <td>{{item.dt_txt}}</td>
+                <td>{{item.main.temp}}</td>
+                <td>{{item.main.pressure}}</td>
+                <td>{{item.weather[0].description}}</td>
+                <td>{{item.wind.speed}}</td>
+              </tr>
+                </ng-container>
+              </table>
             </div>
           </div>
         </div>
