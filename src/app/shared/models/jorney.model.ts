@@ -1,4 +1,5 @@
 import {Address} from './address.model';
+import {Hotel} from './hotel.model';
 
 export class Jorney {
   constructor(
@@ -7,6 +8,7 @@ export class Jorney {
     public price: number,
     public durationTimeMin: number,
     public languageGuide: string,
+    public hotelsList?: Array<Hotel>,
     public id?: number
   ) {
   }

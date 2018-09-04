@@ -8,6 +8,7 @@ import {ConfigService} from './config.service';
 import {User} from '../models/user.model';
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
 import {Address} from '../models/address.model';
+import {Hotel} from '../models/hotel.model';
 
 
 @Injectable()
@@ -40,6 +41,10 @@ export class UsersService {
 
   createNewUser(user: User): Observable<User> {
     return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.configService.getBeckendUrl() + '/users');
   }
 
   updateUser(user: User) {

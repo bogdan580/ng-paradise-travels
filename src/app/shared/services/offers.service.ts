@@ -21,12 +21,12 @@ export class OffersService {
     return this.http.get<Offer>(this.configService.getBeckendUrl() + '/offers');
   }
 
-  getHotels(): Observable<Hotel> {
-    return this.http.get<Hotel>(this.configService.getBeckendUrl() + '/hotels');
+  getHotels(): Observable<Hotel[]> {
+    return this.http.get<Hotel[]>(this.configService.getBeckendUrl() + '/hotels');
   }
 
-  getLocalJorneys(): Observable<Jorney> {
-    return this.http.get<Jorney>(this.configService.getBeckendUrl() + '/local-journeys');
+  getLocalJorneys(): Observable<Jorney[]> {
+    return this.http.get<Jorney[]>(this.configService.getBeckendUrl() + '/local-journeys');
   }
 
   buy(offerBuyRequestModel: OfferBuyRequestModel): Observable<PojoBooleanModel> {

@@ -21,9 +21,10 @@ import {Offer} from '../../shared/models/offer.model';
 export class AdminPageComponent implements OnInit {
 
   message: Message;
-  hotels: Hotel;
+  hotels: Array<Hotel>;
   offers: Offer;
-  localJorneys: Jorney;
+  users: Array<User>;
+  localJorneys: Array<Jorney>;
 
   constructor(private usersService: UsersService,
               private offersService: OffersService,
@@ -52,10 +53,12 @@ export class AdminPageComponent implements OnInit {
       this.getHotels();
       this.getOffers();
       this.getLocalJorneys();
+      this.getUsers();
     });
   }
 
   form: FormGroup;
+  formDelUsr: FormGroup;
   formAddLJ: FormGroup;
   formDelJorney: FormGroup;
   formAddOf: FormGroup;
@@ -88,7 +91,7 @@ export class AdminPageComponent implements OnInit {
     });
 
     this.formAddLJ = new FormGroup({
-      'idHotel': new FormControl(null, [Validators.required]),
+      'Hotels': new FormControl(null, [Validators.required]),
       'jorneyName': new FormControl(null, [Validators.required]),
       'price': new FormControl(null, [Validators.required]),
       'languageGuide': new FormControl(null, [Validators.required]),
@@ -117,6 +120,9 @@ export class AdminPageComponent implements OnInit {
     this.formDelOf = new FormGroup({
       'idOffer': new FormControl(null, [Validators.required])
     });
+    this.formDelUsr = new FormGroup({
+      'idUser': new FormControl(null, [Validators.required])
+    });
     this.formDelJorney = new FormGroup({
       'idJorney': new FormControl(null, [Validators.required])
     });
@@ -133,6 +139,13 @@ export class AdminPageComponent implements OnInit {
     console.log('getHotels');
     this.offersService.getHotels().subscribe(hotelList => {
       this.hotels = hotelList;
+    });
+  }
+
+  getUsers(): void {
+    console.log('getUsers');
+    this.usersService.getUsers().subscribe(usersList => {
+      this.users = usersList;
     });
   }
 
@@ -174,14 +187,20 @@ export class AdminPageComponent implements OnInit {
   }
 
   onSubmitAddLJ() {
-    const {idHotel, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
-    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide/*, idHotel*/);
+    const {Hotels, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
+    console.log(JSON.stringify(Hotels));
+    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, Hotels);
     console.log(`Json: ` + JSON.stringify(localJorney).toString());
   }
 
   onSubmitDelOf() {
     const {idOffer} = this.formDelOf.value;
     console.log(`del offer ` + idOffer);
+  }
+
+  onSubmitDelUsr() {
+    const {idUser} = this.formDelUsr.value;
+    console.log(`del user ` + idUser);
   }
 
   onSubmitDelLocalJorney() {
