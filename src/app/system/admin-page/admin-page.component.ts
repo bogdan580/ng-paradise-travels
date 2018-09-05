@@ -50,10 +50,7 @@ export class AdminPageComponent implements OnInit {
         });
       }
 
-      this.getHotels();
-      this.getOffers();
-      this.getLocalJorneys();
-      this.getUsers();
+        this.getHotels();
     });
   }
 
@@ -139,13 +136,7 @@ export class AdminPageComponent implements OnInit {
     console.log('getHotels');
     this.offersService.getHotels().subscribe(hotelList => {
       this.hotels = hotelList;
-    });
-  }
-
-  getUsers(): void {
-    console.log('getUsers');
-    this.usersService.getUsers().subscribe(usersList => {
-      this.users = usersList;
+      this.getOffers();
     });
   }
 
@@ -153,6 +144,7 @@ export class AdminPageComponent implements OnInit {
     console.log('getOffers');
     this.offersService.getOffers().subscribe(offerList => {
       this.offers = offerList;
+      this.getLocalJorneys();
     });
   }
 
@@ -160,6 +152,14 @@ export class AdminPageComponent implements OnInit {
     console.log('getLocalJorneys');
     this.offersService.getLocalJorneys().subscribe(localJorneysList => {
       this.localJorneys = localJorneysList;
+      this.getUsers();
+    });
+  }
+
+  getUsers(): void {
+    console.log('getUsers');
+    this.usersService.getUsers().subscribe(usersList => {
+      this.users = usersList;
     });
   }
 
