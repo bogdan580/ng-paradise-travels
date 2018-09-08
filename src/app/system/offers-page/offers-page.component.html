@@ -3,20 +3,21 @@
     <h5 class="mb-0">Filters</h5>
   </div>
   <div class="card-body">
-    <form>
+    <form [formGroup]="formS" (ngSubmit)="onSubmitSearch()">
       <div class="form-row justify-content-around">
         <div
-          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Travel location</small><select class="form-control"><optgroup label="Travel location"><option value="12" selected="">Grecja</option><option value="13">Włochy</option><option value="14">Hiszpania</option></optgroup></select></div>
+          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Travel location</small><select class="form-control" id="location" formControlName="location"><optgroup label="Travel location"><option value="Greece" selected="">Greece</option><option value="Italy">Italy</option><option value="Spain">Spain</option></optgroup></select></div>
         <div
-          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Start date of travel</small><input class="form-control" type="date"></div>
-        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">End date of travel</small><input class="form-control" type="date"></div>
-        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Price from</small><input class="form-control" type="number"></div>
-        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Price to</small><input class="form-control" type="number"></div>
+          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Start date of travel</small><input class="form-control"  id="datefrom" formControlName="datefrom" type="date"></div>
+        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">End date of travel</small><input class="form-control" id="dateto" formControlName="dateto" type="date"></div>
+        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Price from</small><input class="form-control" id="pricefrom" formControlName="pricefrom" type="number"></div>
+        <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Price to</small><input class="form-control" id="priceto" formControlName="priceto" type="number"></div>
+        <button class="btn btn-default float-right" [disabled]="!formS.valid" type="submit">Search</button>
       </div>
     </form>
   </div>
 </div>
-
+<div *ngIf="search==false">
 <h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Lista ofert</h1>
 <ul class="list-group" style="padding:30px;">
   <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;" *ngFor="let app of offers"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">{{app.name}}</span></strong>
@@ -30,3 +31,19 @@
     </div>
   </li>
 </ul>
+</div>
+<div *ngIf="search==true">
+  <h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Wyszukane oferty</h1>
+  <ul class="list-group" style="padding:30px;">
+    <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;" *ngFor="let app of myfind"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">{{app.name}}</span></strong>
+      <div class="row justify-content-center align-items-center" style="margin:12px;">
+        <div class="col-md-11 col-lg-4" style="margin:8px;"><img class="rounded img-fluid" src="assets/img/{{app.id}}.jpg"></div>
+        <div class="col">
+          <p class="lead text-center" style="margin-bottom:0px;"> {{app.hotel.name}}</p><span style="font-size:16px;"><br><strong></strong>&nbsp;{{app.shortDescription}} &nbsp;<br><br></span>
+          <a
+            class="btn btn-primary float-right" role="button" [routerLink]="['/offer', app.id]" style="margin:15px;margin-bottom:10px;margin-top:0;">Read more</a>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
