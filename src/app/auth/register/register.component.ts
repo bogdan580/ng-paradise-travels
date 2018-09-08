@@ -8,7 +8,6 @@ import {UsersService} from '../../shared/services/users.service';
 import {User} from '../../shared/models/user.model';
 import {Address} from '../../shared/models/address.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
-import {HelperService} from '../../shared/services/helper.service';
 
 @Component({
   selector: 'wfm-registration',
@@ -20,8 +19,7 @@ export class RegisterComponent implements OnInit {
   form: FormGroup;
   constructor(
     private router: Router,
-    private userService: UsersService,
-    private helperService: HelperService
+    private userService: UsersService
   ) { }
 
   ngOnInit() {

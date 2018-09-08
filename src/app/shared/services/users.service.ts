@@ -43,6 +43,10 @@ export class UsersService {
     return this.http.post<User>(this.configService.getBeckendUrl() + `/register`, user) ;
   }
 
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete<any>( this.configService.getBeckendUrl() + `/users/` + id);
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.configService.getBeckendUrl() + '/users');
   }

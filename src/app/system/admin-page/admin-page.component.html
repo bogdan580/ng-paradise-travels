@@ -172,9 +172,9 @@
           <h4 class="text-left card-title">Add local journey</h4>
           <h6 style="margin:10px;">Hotel</h6>
           <form [formGroup]="formAddLJ" (ngSubmit)="onSubmitAddLJ()">
-            <select multiple size=3 class="form-control" id="Hotels" formControlName="Hotels" style="margin:10px;">
+            <select class="form-control" formControlName="idHtl" style="margin:10px;">
               <optgroup label="Hotels" >
-                <option *ngFor="let hotel of hotels;" value="{{hotel}}">{{hotel.name}}</option>
+                <option *ngFor="let hotel of hotels;" value="{{hotel.id}}">{{hotel.name}}</option>
               </optgroup>
             </select>
             <input class="form-control" type="text" id="jorneyName" formControlName="jorneyName" placeholder="Name" style="margin:10px;">

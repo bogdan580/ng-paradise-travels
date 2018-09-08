@@ -12,6 +12,9 @@ import {OffersService} from '../../shared/services/offers.service';
 import {Hotel} from '../../shared/models/hotel.model';
 import {Jorney} from '../../shared/models/jorney.model';
 import {Offer} from '../../shared/models/offer.model';
+import {PojoNumberModel} from '../../shared/models/pojoModels/pojoNumber.model';
+import {ConfigService} from '../../shared/services/config.service';
+import {idLocale} from 'ngx-bootstrap';
 
 @Component({
   selector: 'wfm-admin-page',
@@ -28,6 +31,7 @@ export class AdminPageComponent implements OnInit {
 
   constructor(private usersService: UsersService,
               private offersService: OffersService,
+              private configService: ConfigService,
               private router: Router,
               private route: ActivatedRoute) {
     this.usersService.getLoggedUser().subscribe((user: User) => {
@@ -88,7 +92,7 @@ export class AdminPageComponent implements OnInit {
     });
 
     this.formAddLJ = new FormGroup({
-      'Hotels': new FormControl(null, [Validators.required]),
+      'idHtl': new FormControl(null, [Validators.required]),
       'jorneyName': new FormControl(null, [Validators.required]),
       'price': new FormControl(null, [Validators.required]),
       'languageGuide': new FormControl(null, [Validators.required]),
@@ -181,16 +185,36 @@ export class AdminPageComponent implements OnInit {
     const {nameHotel, descriptionHotel, starsHotel, street, postal, city, region, country, offerName, dateFrom,
             dateTo, promoted, shortDesc, desc, pricePerDay} = this.formAddOf.value;
     const address = new Address(street, postal, city, region, country);
-    const hotel = new Hotel(nameHotel, descriptionHotel, starsHotel, address);
+    const hotel = new Hotel(null, nameHotel, descriptionHotel, starsHotel, address);
     const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, pricePerDay );
     console.log(`Json: ` + JSON.stringify(offer).toString());
   }
 
   onSubmitAddLJ() {
-    const {Hotels, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
-    console.log(JSON.stringify(Hotels));
-    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, Hotels);
+    const {idHtl, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
+    const hotels = new Array<Hotel>();
+    hotels.push(new Hotel(idHtl));
+    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, hotels);
     console.log(`Json: ` + JSON.stringify(localJorney).toString());
+    /*this.configService.createNewLJ(localJorney).subscribe( req => {
+        this.router.navigate(['/admin'], {
+          queryParams: {
+            changeSave: req.value
+          }
+        });
+    });*/
+  }
+
+  onSubmitDelLocalJorney() {
+    const {idJorney} = this.formDelJorney.value;
+    console.log(`del local jorney ` + idJorney);
+    this.configService.deleteLJ(idJorney).subscribe( req => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: req.value
+        }
+      });
+    });
   }
 
   onSubmitDelOf() {
@@ -201,12 +225,16 @@ export class AdminPageComponent implements OnInit {
   onSubmitDelUsr() {
     const {idUser} = this.formDelUsr.value;
     console.log(`del user ` + idUser);
+    this.usersService.deleteUser(idUser).subscribe( () => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });
   }
 
-  onSubmitDelLocalJorney() {
-    const {idJorney} = this.formDelJorney.value;
-    console.log(`del local jorney ` + idJorney);
-  }
+
 
 
   forbiddenLogins (control: FormControl): Promise<any> {
