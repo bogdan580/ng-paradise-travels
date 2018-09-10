@@ -144,6 +144,7 @@ export class ProfilePageComponent implements OnInit {
      // console.log(this.reserv);
       console.log(this.reserver);
       console.log(this.isNull);
+      console.log(this.reserver[0].numberOfOnePersonBed);
       this.invoiceAdress = 'http://77.55.193.96:8080/paradiseTravels/invoices/reservation/';
     });
   }

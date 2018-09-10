@@ -7,15 +7,15 @@ export interface Reservation {
     room: Room;
     user: User;
     offer: Offer;
-    numberofonepersonbed: number;
-    numberoftwopersonbed: number;
+    numberOfOnePersonBed: number;
+    numberOfTwoPersonBed: number;
     dateFrom: Date;
     dateTo: Date;
     price: number;
     priceTotal: number;
-    reservationstatus: string;
+    reservationStatus: string;
     id?: number;
-    peoplecount: number;
+    pepoleCount: number;
 }
 export namespace Convert {
   export function toReservation(json: string): Reservation {

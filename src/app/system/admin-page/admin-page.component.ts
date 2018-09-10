@@ -71,7 +71,6 @@ export class AdminPageComponent implements OnInit {
         });
       }
     });
-
     this.form = new FormGroup({
       'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
@@ -152,6 +151,7 @@ export class AdminPageComponent implements OnInit {
     console.log('getLocalJorneys');
     this.offersService.getLocalJorneys().subscribe(localJorneysList => {
       this.localJorneys = localJorneysList;
+      console.log(this.localJorneys);
       this.getUsers();
     });
   }

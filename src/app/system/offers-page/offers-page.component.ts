@@ -30,6 +30,7 @@ export class OffersPageComponent implements OnInit {
       this.offers = oferta;
     });
   }
+
   onSubmitSearch() {
     const {location, datefrom, dateto,  pricefrom, priceto} = this.formS.value;
     console.log(this.formS.value);
