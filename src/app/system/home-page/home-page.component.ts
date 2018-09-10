@@ -10,16 +10,18 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class HomePageComponent implements OnInit {
   offers: Offer;
-
+  myfind: Array<any>;
+  search: boolean;
   constructor(private offersService: OffersService) { }
-  @Input() form: FormGroup;
+  formA: FormGroup;
   ngOnInit() {
     this.get2Offers();
-    this.form = new FormGroup({
-      'numberOfCustomers': new FormControl(null, [Validators.required, Validators.min(1), Validators.max(10)]),
-      'data': new FormControl(null, [Validators.required]),
-      'destination': new FormControl(null, [Validators.required]),
-      'country': new FormControl(null, [Validators.required]),
+    this.formA = new FormGroup({
+      'location': new FormControl(),
+      'datefrom': new FormControl(),
+      'dateto': new FormControl(),
+      'pricefrom': new FormControl(),
+      'priceto': new FormControl()
     });
   }
   get2Offers(): void {
@@ -28,4 +30,16 @@ export class HomePageComponent implements OnInit {
       this.offers = oferta;
     });
   }
+  onSubmitSearch() {
+    const {location, datefrom, dateto,  pricefrom, priceto} = this.formA.value;
+    console.log(this.formA.value);
+    console.log(location);
+    this.offersService.getSearch(location, datefrom, dateto, pricefrom, priceto).subscribe(research => {
+      this.myfind = research;
+      this.search = true;
+      console.log(this.myfind);
+    }
+    );
+  }
+
 }

@@ -39,6 +39,7 @@ export class OfferPageComponent implements OnInit {
   oferty: Offer;
   hotelStars: number[];
   forecast: Array<any>;
+  cityName: string;
   public selectedId: any;
   constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router, ) {
   }
@@ -46,6 +47,7 @@ export class OfferPageComponent implements OnInit {
   @Input() form: FormGroup;
 
   ngOnInit() {
+    this.loadScript('https://widgets.skyscanner.net/widget-server/js/loader.js');
     this.
     route.
     params.
@@ -70,7 +72,7 @@ export class OfferPageComponent implements OnInit {
     console.log(this.oferty);
       this.hotelStars = new Array(this.oferty.hotel.stars);
       this.addJourneysFormControl(this.oferty.hotel.localJourneyList);
-
+      this.cityName = this.oferty.hotel.address.city;
       this.getForecast();
     });
   }
@@ -86,7 +88,15 @@ export class OfferPageComponent implements OnInit {
       this.form.addControl('journey.' + journey.id, new FormControl(null, []));
     }
   }
-
+  public loadScript(url: string) {
+    const body = <HTMLDivElement> document.body;
+    const script = document.createElement('script');
+    script.innerHTML = '';
+    script.src = url;
+    script.async = false;
+    script.defer = true;
+    body.appendChild(script);
+  }
   onSubmit() {
 
     const offerBuyRequestModel = new OfferBuyRequestModel(new Array<number>(), null, null, null, null, null, null);

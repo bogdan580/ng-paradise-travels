@@ -6,7 +6,14 @@
     <form [formGroup]="formS" (ngSubmit)="onSubmitSearch()">
       <div class="form-row justify-content-around">
         <div
-          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Travel location</small><select class="form-control" id="location" formControlName="location"><optgroup label="Travel location"><option value="Greece" selected="">Greece</option><option value="Italy">Italy</option><option value="Spain">Spain</option></optgroup></select></div>
+          class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Travel location</small>
+          <select class="form-control" id="location" formControlName="location">
+          <optgroup label="Travel location">
+            <option value="Greece" selected="">Greece</option>
+            <option value="Italy">Italy</option>
+            <option value="Spain">Spain</option>
+          </optgroup>
+        </select></div>
         <div
           class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">Start date of travel</small><input class="form-control"  id="datefrom" formControlName="datefrom" type="date"></div>
         <div class="col-auto col-sm-5 col-lg-2" style="margin:5px;"><small class="form-text text-muted">End date of travel</small><input class="form-control" id="dateto" formControlName="dateto" type="date"></div>
@@ -18,7 +25,7 @@
   </div>
 </div>
 <div *ngIf="search==false">
-<h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Lista ofert</h1>
+<h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">List of offers</h1>
 <ul class="list-group" style="padding:30px;">
   <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;" *ngFor="let app of offers"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">{{app.name}}</span></strong>
     <div class="row justify-content-center align-items-center" style="margin:12px;">
@@ -33,7 +40,7 @@
 </ul>
 </div>
 <div *ngIf="search==true">
-  <h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Wyszukane oferty</h1>
+  <h1 style="padding:20px;padding-bottom:0px;padding-left:50px;">Selected offers</h1>
   <ul class="list-group" style="padding:30px;">
     <li class="list-group-item" style="background-color:rgba(255,255,255,0.5);margin-bottom:20px;" *ngFor="let app of myfind"><strong><span style="font-family:Lemonada, cursive;font-size:20px;margin:25px;">{{app.name}}</span></strong>
       <div class="row justify-content-center align-items-center" style="margin:12px;">

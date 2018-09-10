@@ -5,20 +5,42 @@
       <div class="card-body">
         <div class="row align-items-center">
           <div class="col-md-6 align-self-center">
-            <form style="margin:25px;"><small
-              class="form-text text-muted">Kierunek podróży</small><select class="form-control"><optgroup label="Kierunek podróży"><option value="12" selected="">Grecja</option><option value="13">Włochy</option><option value="14">Hiszpania</option></optgroup></select>
+            <form [formGroup]="formA" (ngSubmit)="onSubmitSearch()" style="margin:25px;"><small
+              class="form-text text-muted">Travel location</small><select class="form-control" id="location" formControlName="location">
+              <optgroup label="Travel location">
+                <option value="Greece" selected="">Greece</option>
+                <option value="Italy">Italy</option>
+                <option value="Spain">Spain</option>
+              </optgroup>
+            </select>
               <small
-                class="form-text text-muted">Miasto</small><select class="form-control"><optgroup label="Kierunek podróży"><option value="12" selected="">Athens</option><option value="13">Barcelona</option><option value="14">Salonica</option></optgroup></select>
+                class="form-text text-muted">Start date of travel</small><input class="form-control"  id="datefrom" formControlName="datefrom" type="date">
               <small
-                class="form-text text-muted">Data podróży</small><input class="form-control" type="date"><small class="form-text text-muted">Ilość osób</small>
-              <input
-                class="form-control" type="number"></form><button class="btn btn-primary" type="button" style="margin-bottom:10px;">Find</button></div>
-          <div class="col-md-6"><img class="img-fluid" src="assets/img/pexels-photo-457882.jpeg"></div>
-        </div>
+                class="form-text text-muted">End date of travel</small><input class="form-control" id="dateto" formControlName="dateto" type="date">
+              <br>
+          <button class="btn btn-info float-right"  [disabled]="!formA.valid" type="submit">Search</button>
+          </form>
       </div>
+          <div class="col-md-6"><img class="img-fluid" src="assets/img/pexels-photo-457882.jpeg">
+          </div>
     </div>
   </div>
 </div>
+    <div *ngIf="search==true">
+      <h1 style="padding:20px;padding-bottom:0px;padding-left:0px;">Selected offers</h1>
+      <ul class="list-group" style="padding:20px;">
+        <li class="list-group-item" style="background-color:rgba(255,155,155,0.5);margin-bottom:20px;" *ngFor="let app of myfind"><strong><span style="font-family:Lemonada, cursive;font-size:15px;margin:0px;">{{app.name}}</span></strong>
+          <div class="row justify-content-center align-items-center" style="margin:12px;">
+            <div class="col-md-6 col-lg-6" style="margin:8px;"><img class="rounded img-fluid" src="assets/img/{{app.id}}.jpg"></div>
+            <div class="col">
+              <p class="lead text-center" style="margin-bottom:0px;"> {{app.hotel.name}}</p><span style="font-size:15px;"><br><strong></strong>&nbsp;{{app.shortDescription}} &nbsp;<br><br></span>
+              <a
+                class="btn btn-primary float-right" role="button" [routerLink]="['/offer', app.id]" style="margin:15px;margin-bottom:10px;margin-top:0;">Read more</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
 <div class="simple-slider" style="padding:15px;margin:30px;padding-top:0px;padding-bottom:0px;">
   <div class="swiper-container" style="margin:20px;height:350px;" >
     <div class="swiper-wrapper">
