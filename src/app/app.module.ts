@@ -12,7 +12,6 @@ import {SystemModule} from './system/system.module';
 import {SystemComponent} from './system/system.component';
 import {ConfigService} from './shared/services/config.service';
 import {CustomInterceptor} from './shared/Interceptors/custom.interceptor';
-import {HelperService} from './shared/services/helper.service';
 
 
 @NgModule({
@@ -28,7 +27,7 @@ import {HelperService} from './shared/services/helper.service';
     SystemModule
   ],
   providers: [
-    UsersService, AuthService, ConfigService, HelperService, {
+    UsersService, AuthService, ConfigService,  {
       provide: HTTP_INTERCEPTORS,
       useClass: CustomInterceptor,
       multi: true,

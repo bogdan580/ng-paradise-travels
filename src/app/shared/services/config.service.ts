@@ -1,9 +1,17 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from '../models/user.model';
+import {HttpClient} from '@angular/common/http';
+import {Jorney} from '../models/jorney.model';
+import {PojoNumberModel} from '../models/pojoModels/pojoNumber.model';
+import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
+
+  constructor( private http: HttpClient) {}
 
   public getBeckendUrl(): string {
     // return 'http://localhost:8080/paradiseTravels';
@@ -11,5 +19,12 @@ export class ConfigService {
   }
   public getWeatherUrl(): string {
     return 'https://api.openweathermap.org/data/2.5/forecast?';
+  }
+
+  createNewLJ(jorney: Jorney): Observable<PojoBooleanModel> {
+    return this.http.post<PojoBooleanModel>(this.getBeckendUrl() + `/local-journeys`, jorney) ;
+  }
+  deleteLJ(id: number): Observable<any> {
+    return this.http.delete( this.getBeckendUrl() + `/local-journejs/` + id);
   }
 }

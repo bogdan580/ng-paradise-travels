@@ -4,12 +4,12 @@ import {ReviewModel} from './review.model';
 
 export class Hotel {
     constructor(
-      public name: string,
-      public description: string,
-      public stars: number,
-      public address: Address,
+      public id?: number,
+      public name?: string,
+      public description?: string,
+      public stars?: number,
+      public address?: Address,
       public localJourneyList?: Array<Jorney>,
-      public reviewList?: Array<ReviewModel>,
-      public id?: number
+      public reviewList?: Array<ReviewModel>
     ) {}
 }

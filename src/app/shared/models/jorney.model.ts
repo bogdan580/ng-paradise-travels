@@ -1,4 +1,4 @@
-import {Address} from './address.model';
+import {PojoNumberModel} from './pojoModels/pojoNumber.model';
 import {Hotel} from './hotel.model';
 
 export class Jorney {
@@ -8,7 +8,7 @@ export class Jorney {
     public price: number,
     public durationTimeMin: number,
     public languageGuide: string,
-    public hotelsList?: Array<Hotel>,
+    public hotelList?: Array<Hotel>,
     public id?: number
   ) {
   }
