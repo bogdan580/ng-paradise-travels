@@ -9,6 +9,7 @@ export class Offer {
               public promoted: boolean,
               public description: string,
               public shortDescription: string,
+              public pictures: Array<string>,
               public pricePerDayPerPerson: number,
               public id?: number
   ) {

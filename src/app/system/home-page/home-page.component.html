@@ -20,10 +20,10 @@
   </div>
 </div>
 <div class="simple-slider" style="padding:15px;margin:30px;padding-top:0px;padding-bottom:0px;">
-  <div class="swiper-container" style="margin:20px;height:350px;">
+  <div class="swiper-container" style="margin:20px;height:350px;" >
     <div class="swiper-wrapper">
       <ng-container *ngFor="let off of offers">
-      <div class="swiper-slide" [ngStyle]="{'background-image': 'url(/assets/img/'+off.id+'.jpg)'}">
+      <div class="swiper-slide" [ngStyle]="{'background-image': 'url(' + off.pictures[0]+')'}" >
 
         <div class="row" style="background-color:rgba(0,0,0,0.5);padding-bottom:150px;">
           <div class="col">

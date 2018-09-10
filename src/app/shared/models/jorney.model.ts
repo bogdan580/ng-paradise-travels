@@ -8,7 +8,7 @@ export class Jorney {
     public price: number,
     public durationTimeMin: number,
     public languageGuide: string,
-    public hotelList?: Array<Hotel>,
+    public hotel?: Hotel,
     public id?: number
   ) {
   }

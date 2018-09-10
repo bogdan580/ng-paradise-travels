@@ -21,8 +21,8 @@ export class ConfigService {
     return 'https://api.openweathermap.org/data/2.5/forecast?';
   }
 
-  createNewLJ(jorney: Jorney): Observable<PojoBooleanModel> {
-    return this.http.post<PojoBooleanModel>(this.getBeckendUrl() + `/local-journeys`, jorney) ;
+  createNewLJ(jorney: Jorney): Observable<any> {
+    return this.http.post<any>(this.getBeckendUrl() + `/local-journeys`, jorney) ;
   }
   deleteLJ(id: number): Observable<any> {
     return this.http.delete( this.getBeckendUrl() + `/local-journejs/` + id);

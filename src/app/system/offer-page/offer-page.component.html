@@ -5,24 +5,12 @@
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
           <div class="row justify-content-center photos" style="margin-bottom:15px;">
-            <div class="col-9 mx-auto"><a class="d-block" href="assets/img/building.jpg" data-lightbox="photos"><img
-              class="img-fluid" src="assets/img/building.jpg"></a></div>
+            <div class="col-9 mx-auto"><a class="d-block" href="{{oferty.pictures[0]}}" data-lightbox="photos"><img
+              class="img-fluid" src="{{oferty.pictures[0]}}"></a></div>
           </div>
           <div class="row justify-content-around">
-            <div class="col"><a href="assets/img/desk.jpg" data-lightbox="photos"><img class="img-fluid"
-                                                                                       src="assets/img/desk.jpg"></a>
-            </div>
-            <div class="col"><a href="assets/img/loft.jpg" data-lightbox="photos"><img class="img-fluid"
-                                                                                       src="assets/img/loft.jpg"></a>
-            </div>
-            <div class="col"><a href="assets/img/building.jpg" data-lightbox="photos"><img class="img-fluid"
-                                                                                           src="assets/img/building.jpg"></a>
-            </div>
-            <div class="col"><a href="assets/img/loft.jpg" data-lightbox="photos"><img class="img-fluid"
-                                                                                       src="assets/img/loft.jpg"></a>
-            </div>
-            <div class="col"><a href="assets/img/desk.jpg" data-lightbox="photos"><img class="img-fluid"
-                                                                                       src="assets/img/desk.jpg"></a>
+            <div class="col" *ngFor="let img of oferty.pictures">
+              <a href="{{img}}" data-lightbox="photos"><img class="img-fluid" src="{{img}}"></a>
             </div>
           </div>
         </div>

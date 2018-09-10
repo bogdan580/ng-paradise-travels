@@ -186,32 +186,37 @@ export class AdminPageComponent implements OnInit {
             dateTo, promoted, shortDesc, desc, pricePerDay} = this.formAddOf.value;
     const address = new Address(street, postal, city, region, country);
     const hotel = new Hotel(null, nameHotel, descriptionHotel, starsHotel, address);
-    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, pricePerDay );
+    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, [ ], pricePerDay );
     console.log(`Json: ` + JSON.stringify(offer).toString());
   }
 
   onSubmitAddLJ() {
     const {idHtl, jorneyName, price, languageGuide, durationTime, description} = this.formAddLJ.value;
-    const hotels = new Array<Hotel>();
-    hotels.push(new Hotel(idHtl));
-    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, hotels);
+    const hotel = new Hotel(idHtl);
+    const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, hotel);
     console.log(`Json: ` + JSON.stringify(localJorney).toString());
-    /*this.configService.createNewLJ(localJorney).subscribe( req => {
+    this.configService.createNewLJ(localJorney).subscribe( () => {
         this.router.navigate(['/admin'], {
           queryParams: {
-            changeSave: req.value
+            changeSave: true
           }
         });
-    });*/
+    }, error1 => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: false
+        }
+      });
+    });
   }
 
   onSubmitDelLocalJorney() {
     const {idJorney} = this.formDelJorney.value;
     console.log(`del local jorney ` + idJorney);
-    this.configService.deleteLJ(idJorney).subscribe( req => {
+    this.configService.deleteLJ(idJorney).subscribe( () => {
       this.router.navigate(['/admin'], {
         queryParams: {
-          changeSave: req.value
+          changeSave: true
         }
       });
     });
