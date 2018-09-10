@@ -29,7 +29,7 @@
       </div>
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
-          <h4 class="text-center card-title">Opis dokładny</h4>
+          <h4 class="text-center card-title">Detailed description</h4>
           <h6 class="text-right text-muted card-subtitle mb-2"></h6>
           <p> {{oferty.description}}<br></p>
         </div>
@@ -48,7 +48,7 @@
     <div class="col-xl-6">
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body" style="margin-bottom:15px;">
-          <h4 class="text-right card-title">{{oferty.pricePerDayPerPerson}} $</h4>
+          <h4 class="text-right card-title">{{oferty.pricePerDayPerPerson}} PLN</h4>
           <p class="card-text" align="center">Address</p>
           <p class="card-text">Country: {{oferty.hotel.address.country}}</p>
           <p class="card-text">City: {{oferty.hotel.address.city}}</p>
@@ -60,7 +60,7 @@
             <div class="form-group" style="margin-top:5px;" [ngClass]="{'has-error': form.get('numberOfCustomers').invalid && form.get('numberOfCustomers').touched}">
               <div class="col">
 
-                <small class="form-text text-muted">number of customers</small>
+                <small class="form-text text-muted">Number of customers</small>
                 <input class="form-control" type="number" name="numberOfCustomers" id="numberOfCustomers" formControlName="numberOfCustomers">
 
                 <span class="form-help-text" *ngIf="form.get('numberOfCustomers').invalid && form.get('numberOfCustomers').touched">
@@ -132,13 +132,13 @@
                   <small class="form-text text-muted" style="font-size:16px;margin-top:0px;">{{jorney.languageGuide}} ({{jorney.durationTimeMin}} hour)
                   </small>
                   <small class="form-text text-muted" style="font-size:16px;margin-top:0px;">{{jorney.description}}</small>
-                  <h5>{{jorney.price}}$</h5>
+                  <h5>{{jorney.price}}PLN</h5>
                   <input type="checkbox" name="journey.{{jorney.id}}" id="journey.{{jorney.id}}" formControlName="journey.{{jorney.id}}"
                          style="margin-left:10px;width:50px;height:50px;position: absolute; left: 20px;">
                 </div>
               </div>
             </div>
-            <h2>Total price: {{totalPrice()}} $</h2>
+            <h2>Total price: {{totalPrice()}} PLN</h2>
             <div class="form-group">
               <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Buy Now</button>
             </div>

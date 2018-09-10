@@ -94,12 +94,13 @@
             <h6 class="text-muted mb-2" style="margin:10px;">Hotel</h6>
             <input class="form-control" type="text" name="nameHotel" id="nameHotel" formControlName="nameHotel" placeholder="Name of Hotel" style="margin:10px;">
             <textarea class="form-control" name="descriptionHotel" id="descriptionHotel" formControlName="descriptionHotel" placeholder="Description" style="margin:10px;"></textarea>
+            <h6 style="margin:10px;">Rating of hotel</h6>
             <select id="starsHotel" formControlName="starsHotel"
               class="form-control" name="stars" style="margin:10px;">
-              <optgroup label="Stars">
+              <optgroup label="Stars" >
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option value="3" selected="">3</option>
+                <option value="3" >3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
               </optgroup>
@@ -127,7 +128,8 @@
             </select>
             <input class="form-control" type="text" name="shortDescription" id="shortDesc" formControlName="shortDesc" placeholder="Short description" style="margin:10px;">
             <textarea class="form-control" name="description" id="desc" formControlName="desc" placeholder="Description" style="margin:10px;"></textarea>
-            <input class="form-control" type="text" name="pricePerDay" id="pricePerDay" formControlName="pricePerDay" placeholder="Price per day" style="margin:10px;">
+
+              <input class="form-control" type="text" name="pricePerDay" id="pricePerDay" formControlName="pricePerDay" placeholder="Price per day (PLN)" style="margin:10px;">
             <button class="btn btn-success float-right" type="submit">Save</button>
           </form>
         </div>
