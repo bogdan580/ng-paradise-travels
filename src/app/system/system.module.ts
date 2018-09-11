@@ -7,9 +7,11 @@ import { OffersPageComponent } from './offers-page/offers-page.component';
 import { OfferPageComponent } from './offer-page/offer-page.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 @NgModule({
   imports: [
+    SlideshowModule,
     CommonModule,
     SharedModule,
     SystemRoutingModule
