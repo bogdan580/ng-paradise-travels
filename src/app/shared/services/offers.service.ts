@@ -18,8 +18,8 @@ export class OffersService {
 
   }
 
-  getOffers(): Observable<Offer> {
-    return this.http.get<Offer>(this.configService.getBeckendUrl() + '/offers');
+  getOffers(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(this.configService.getBeckendUrl() + '/offers');
   }
 
   getHotels(): Observable<Hotel[]> {

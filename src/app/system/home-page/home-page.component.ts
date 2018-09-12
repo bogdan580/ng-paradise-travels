@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Convert, Offer} from '../../shared/models/offer.model';
 import {OffersService} from '../../shared/services/offers.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {IImage} from 'ng-simple-slideshow';
 import {environment} from '../../../environments/environment';
 
@@ -11,16 +12,15 @@ import {environment} from '../../../environments/environment';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  offers;
-  myfind: Array<any>;
-  search: boolean;
-  constructor(private offersService: OffersService) { }
+  offers: Array<Offer>;
+
+  constructor(private offersService: OffersService, private router: Router) { }
   formA: FormGroup;
   server = environment.server;
 
   imageSources: (string | IImage)[] = [
 { url: 'https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif',
-  caption: 'Loaidng...' }
+  caption: 'Loading...' }
   ];
 
   ngOnInit() {
@@ -29,8 +29,6 @@ export class HomePageComponent implements OnInit {
       'location': new FormControl(),
       'datefrom': new FormControl(),
       'dateto': new FormControl(),
-      'pricefrom': new FormControl(),
-      'priceto': new FormControl()
     });
     setTimeout(() => {
       console.log('adding an image url dynamically.');
@@ -46,17 +44,17 @@ export class HomePageComponent implements OnInit {
       this.offers = oferta;
     });
   }
-
   onSubmitSearch() {
     const {location, datefrom, dateto,  pricefrom, priceto} = this.formA.value;
     console.log(this.formA.value);
     console.log(location);
-    this.offersService.getSearch(location, datefrom, dateto, pricefrom, priceto).subscribe(research => {
-      this.myfind = research;
-      this.search = true;
-      console.log(this.myfind);
+      this.router.navigate(['/offers'], {
+          queryParams: {
+            location,
+            datefrom,
+            dateto
+          }
+        });
     }
-    );
-  }
 
 }
