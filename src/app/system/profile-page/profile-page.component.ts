@@ -65,6 +65,16 @@ export class ProfilePageComponent implements OnInit {
           text: 'Change was saved',
           type: 'success'
         });
+      } else if (params['paid'] && params['error']) {
+        this.showMessage({
+          text: 'Paid not successful',
+          type: 'danger'
+        });
+      } else if (params['paid']) {
+        this.showMessage({
+          text: 'Paid successful',
+          type: 'success'
+        });
       }
     });
     this.getReservation();
