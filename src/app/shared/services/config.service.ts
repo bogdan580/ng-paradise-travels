@@ -14,8 +14,8 @@ export class ConfigService {
   constructor( private http: HttpClient) {}
 
   public getBeckendUrl(): string {
-      return 'http://localhost:8080/paradiseTravels';
-    // return 'http://77.55.193.96:8080/paradiseTravels';
+    //  return 'http://localhost:8080/paradiseTravels';
+     return 'http://77.55.193.96:8080/paradiseTravels';
   }
   public getWeatherUrl(): string {
     return 'https://api.openweathermap.org/data/2.5/forecast?';
