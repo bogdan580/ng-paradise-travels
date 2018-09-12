@@ -17,6 +17,7 @@ export class HomePageComponent implements OnInit {
   constructor(private offersService: OffersService, private router: Router) { }
   formA: FormGroup;
   server = environment.server;
+  country: Array<string>;
 
   imageSources: (string | IImage)[] = [
 { url: 'https://thumbs.gfycat.com/VibrantHeavyFrogmouth-size_restricted.gif',
@@ -34,7 +35,9 @@ export class HomePageComponent implements OnInit {
       console.log('adding an image url dynamically.');
       this.imageSources.pop();
       this.offers.forEach(item => {
-        this.imageSources.push({url: item.pictures[0], caption: item.name, href: this.server + 'offer/' + item.id});
+        if (item.promoted === true) {
+          this.imageSources.push({url: item.pictures[0], caption: item.name, href: this.server + 'offer/' + item.id});
+        }
       });
     }, 3000);
   }

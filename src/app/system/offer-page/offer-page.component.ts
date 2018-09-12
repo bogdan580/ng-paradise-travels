@@ -12,6 +12,7 @@ import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model
 // import * as domain from 'domain';
 import {setOffsetToUTC} from 'ngx-bootstrap/chronos/units/offset';
 import {PojoStringModel} from '../../shared/models/pojoModels/pojoString.model';
+import {UsersService} from '../../shared/services/users.service';
 
 
 function numberOfBedValidator(control: AbstractControl) {
@@ -41,8 +42,11 @@ export class OfferPageComponent implements OnInit {
   hotelStars: number[];
   forecast: Array<any>;
   cityName: string;
+  isLogged = false;
   public selectedId: any;
-  constructor(private offersService: OffersService, private route: ActivatedRoute, private router: Router, ) {
+  constructor(private offersService: OffersService,
+              private userService: UsersService,
+              private route: ActivatedRoute, private router: Router, ) {
   }
 
   @Input() form: FormGroup;
@@ -63,7 +67,11 @@ export class OfferPageComponent implements OnInit {
       'numberOfOnePersonBed': new FormControl(null, [Validators.required]),
       'numberOfTwoPersonBed': new FormControl(null, [Validators.required]),
     }, [numberOfBedValidator]);
-
+    this.userService.getLoggedUser().subscribe(user => {
+      if (user) {
+        this.isLogged = true;
+      }
+    });
   }
   getOffers(): void {
     this.offersService.getOffers().subscribe(oferta => {
@@ -99,7 +107,6 @@ export class OfferPageComponent implements OnInit {
     body.appendChild(script);
   }
   onSubmit() {
-
     const offerBuyRequestModel = new OfferBuyRequestModel(new Array<number>(), null, null, null, null, null, null);
 
     for (const key of Object.keys(this.form.value)) {

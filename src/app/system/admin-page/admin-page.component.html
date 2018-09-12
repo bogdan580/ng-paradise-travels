@@ -127,9 +127,15 @@
             </optgroup>
             </select>
             <input class="form-control" type="text" name="shortDescription" id="shortDesc" formControlName="shortDesc" placeholder="Short description" style="margin:10px;">
+
+            <input class="form-control" type="text" name="picture1" id="picture1" formControlName="picture1" placeholder="Choose url main picture" style="margin:10px;">
+            <input class="form-control" type="text" name="picture2" id="picture2" formControlName="picture2" placeholder="Choose url picture" style="margin:10px;">
+            <input class="form-control" type="text" name="picture3" id="picture3" formControlName="picture3" placeholder="Choose url picture" style="margin:10px;">
+            <input class="form-control" type="text" name="picture4" id="picture4" formControlName="picture4" placeholder="Choose url picture" style="margin:10px;">
+
             <textarea class="form-control" name="description" id="desc" formControlName="desc" placeholder="Description" style="margin:10px;"></textarea>
 
-              <input class="form-control" type="text" name="pricePerDay" id="pricePerDay" formControlName="pricePerDay" placeholder="Price per day (PLN)" style="margin:10px;">
+              <input class="form-control" type="number" name="pricePerDay" id="pricePerDay" formControlName="pricePerDay" placeholder="Price per day (PLN)" style="margin:10px;">
             <button class="btn btn-success float-right" type="submit">Save</button>
           </form>
         </div>
