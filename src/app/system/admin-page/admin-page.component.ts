@@ -25,7 +25,7 @@ export class AdminPageComponent implements OnInit {
 
   message: Message;
   hotels: Array<Hotel>;
-  offers: Offer;
+  offers: Array<Offer>;
   users: Array<User>;
   localJorneys: Array<Jorney>;
 
