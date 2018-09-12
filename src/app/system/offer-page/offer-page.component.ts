@@ -11,6 +11,7 @@ import {UserLoginResponseModel} from '../../shared/models/responseModels/userLog
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
 // import * as domain from 'domain';
 import {setOffsetToUTC} from 'ngx-bootstrap/chronos/units/offset';
+import {PojoStringModel} from '../../shared/models/pojoModels/pojoString.model';
 
 
 function numberOfBedValidator(control: AbstractControl) {
@@ -122,9 +123,8 @@ export class OfferPageComponent implements OnInit {
     offerBuyRequestModel.numberOfOnePersonBed = numberOfOnePersonBed;
     offerBuyRequestModel.numberOfTwoPersonBed = numberOfTwoPersonBed;
 
-    this.offersService.buy(offerBuyRequestModel).subscribe((pojoBooleanModel: PojoBooleanModel) => {
-      alert('oferta zakupiona!');
-      this.router.navigate(['/profile']);
+    this.offersService.buy(offerBuyRequestModel).subscribe((pojoStringModel: PojoStringModel) => {
+      window.location.href = pojoStringModel.value;
     });
   }
 

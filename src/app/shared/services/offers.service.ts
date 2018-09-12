@@ -9,6 +9,7 @@ import {OfferBuyRequestModel} from '../models/requestModel/OfferBuyRequest.model
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
 import {Hotel} from '../models/hotel.model';
 import {Jorney} from '../models/jorney.model';
+import {PojoStringModel} from '../models/pojoModels/pojoString.model';
 
 @Injectable({providedIn: 'root'})
 export class OffersService {
@@ -51,8 +52,8 @@ export class OffersService {
     console.log(search);
     return this.http.get<any>(this.configService.getBeckendUrl() + search);
   }
-  buy(offerBuyRequestModel: OfferBuyRequestModel): Observable<PojoBooleanModel> {
-    return this.http.post<PojoBooleanModel>( this.configService.getBeckendUrl() + '/offers/buy',
+  buy(offerBuyRequestModel: OfferBuyRequestModel): Observable<PojoStringModel> {
+    return this.http.post<PojoStringModel>( this.configService.getBeckendUrl() + '/offers/reserveAndPay',
       offerBuyRequestModel
     );
   }
