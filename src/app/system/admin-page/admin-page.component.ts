@@ -194,13 +194,13 @@ export class AdminPageComponent implements OnInit {
     const offer = new Offer({name: nameHotel, description: descriptionHotel, stars: starsHotel, address: address},
       dateFrom, dateTo, offerName, promoted, desc, shortDesc, [picture1, picture2, picture3, picture4], pricePerDay);
     console.log(`Json: ` + JSON.stringify(offer).toString());
-/*    this.configService.addNewOffer(offer).subscribe(() => {
+   this.configService.addNewOffer(offer).subscribe(() => {
       this.router.navigate(['/admin'], {
         queryParams: {
           changeSave: true
         }
       });
-    });*/
+    });
   }
 
   onSubmitAddLJ() {
@@ -238,6 +238,14 @@ export class AdminPageComponent implements OnInit {
   onSubmitDelOf() {
     const {idOffer} = this.formDelOf.value;
     console.log(`del offer ` + idOffer);
+    this.configService.deleteOf(idOffer).subscribe(() => {
+      console.log('subscribe');
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });
   }
 
   onSubmitDelUsr() {

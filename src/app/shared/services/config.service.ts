@@ -33,4 +33,8 @@ export class ConfigService {
     return this.http.post<any>(this.getBeckendUrl() + `/offers`, offer);
   }
 
+  deleteOf(id: number): Observable<any> {
+    console.log('delete send');
+    return this.http.delete( this.getBeckendUrl() + `/offers/` + id);
+  }
 }
