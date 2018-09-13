@@ -109,6 +109,7 @@
           <h4>Total price: {{item.price}} PLN</h4>
           <h4>Number of one person bed: {{item.numberOfOnePersonBed}}</h4>
           <h4>Number of two person bed: {{item.numberOfTwoPersonBed}}</h4>
+          <hr size="3px">
           <div  *ngIf="item.localJourneyList.length == 0" class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> journeys.</span></div>
           <h3 *ngIf="item.localJourneyList.length > 0" align="center">Local Journeys</h3>
           <h4 *ngFor="let i of item.localJourneyList">
@@ -124,9 +125,10 @@
             </h4>
           </h4>
           <h4>Reservation data: {{item.dateFrom | date:"fullDate" }} - {{item.dateTo | date:"fullDate" }}</h4>
-          <h4>Reservation status: {{item.reservationStatus}}</h4>
+          <h4 style="color:red;">Reservation status: {{item.reservationStatus}}</h4>
           <!--<h4>Test: {{item.localJourneyList}}</h4>-->
-          <a class="btn btn-info" href="{{invoiceAdress}}{{item.id}}/pdf" role="button">Generate invoice</a>
+          <div *ngIf="item.reservationStatus != 'CANCELED'">
+          <a class="btn btn-info" href="{{invoiceAdress}}{{item.id}}/pdf" role="button">Generate invoice</a></div>
         </div>
       </div>
     </div>
