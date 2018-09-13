@@ -10,6 +10,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Address} from '../../shared/models/address.model';
 import {PojoBooleanModel} from '../../shared/models/pojoModels/pojoBoolean.model';
 import {add} from 'ngx-bootstrap/chronos';
+import {Jorney} from '../../shared/models/jorney.model';
+import {JorneyService} from '../../shared/services/jorney.service';
+import {OffersService} from '../../shared/services/offers.service';
+import {Hotel} from '../../shared/models/hotel.model';
 
 @Component({
   selector: 'wfm-profile-page',
@@ -21,13 +25,18 @@ export class ProfilePageComponent implements OnInit {
   user: User ;
   reservs: Array<Reservation>;
   reserver: Reservation [];
-  reserv: Reservation;
+  journey: Array<Jorney>;
+  hotels: Array<Hotel>;
+  list: Array<Jorney> = new Array<Jorney>();
+  lis2: Array<Jorney> = new Array<Jorney>();
   isNull: boolean;
   invoiceAdress: string;
   constructor(  private router: Router,
                 private route: ActivatedRoute,
                 private usersService: UsersService,
-                private reservationService: ReservationService
+                private reservationService: ReservationService,
+                private journeyService: JorneyService,
+                private offersService: OffersService
   ) {
     this.usersService.getLoggedUser()
     .subscribe((user: User) => {
@@ -78,7 +87,6 @@ export class ProfilePageComponent implements OnInit {
       }
     });
     this.getReservation();
-
     this.formU = new FormGroup({
       'password': new FormControl(null, [ Validators.minLength(6)]),
       'oldPassword': new FormControl(null, [Validators.required], this.notSamePasswords.bind(this)),
@@ -143,22 +151,52 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getReservation(): void {
-    this.reservationService.getReservations().subscribe(oferta => {
-      this.reservs = Convert.toReservations(JSON.stringify(oferta));
-     // this.reserv = this.reservs.find(item => item.user.id === Number(this.user.id));
+    this.reservationService.getReservations().subscribe(reservations => {
+      this.reservs = Convert.toReservations(JSON.stringify(reservations));
+      console.log(this.reservs);
+      // this.reserv = this.reservs.find(item => item.user.id === Number(this.user.id));
       this.reserver = this.reservs.filter(item => item.user.id === Number(this.user.id));
       if (this.reserver.length === 0) {
         this.isNull = true;
       }
       console.log(this.reservs);
-     // console.log(this.reserv);
+      // console.log(this.reserv);
       console.log(this.reserver);
       console.log(this.isNull);
-      console.log(this.reserver[0].numberOfOnePersonBed);
       this.invoiceAdress = 'http://77.55.193.96:8080/paradiseTravels/invoices/reservation/';
+      this.getJourney();
     });
   }
-
+  getJourney(): void {
+      this.offersService.getHotels().subscribe( hotels => {
+        this.hotels = hotels;
+        console.log(this.hotels);
+        for (let lista of this.hotels) {
+          for (let localJurney of lista.localJourneyList) {
+            this.list.push(localJurney);
+          }
+        }
+        console.log(this.list);
+        this.list.sort((a, b ) => {
+          if (a.id > b.id) {
+            return 1;
+          }
+          if (a.id < b.id) {
+            return -1;
+          }
+          return 0;
+        });
+        console.log(this.list);
+        for (let lista of this.reserver) {
+          for (let localJurney of lista.localJourneyList) {
+            this.lis2.push(this.list[localJurney - 1]);
+          }
+          // lista.localJourneyList.push(this.lis2);
+        }
+        console.log(this.lis2);
+        console.log(this.reserver);
+      });
+  }
   forbiddenEmails(control: FormControl): Promise<any> {
     return new Promise((resolve, reject)  => {
       this.usersService.existUserEmail(control.value)

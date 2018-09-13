@@ -16,6 +16,7 @@ export interface Reservation {
     reservationStatus: string;
     id?: number;
     pepoleCount: number;
+    localJourneyList: Array<any>;
 }
 export namespace Convert {
   export function toReservation(json: string): Reservation {
