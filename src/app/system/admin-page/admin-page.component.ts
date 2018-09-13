@@ -27,7 +27,7 @@ export class AdminPageComponent implements OnInit {
   hotels: Array<Hotel>;
   offers: Array<Offer>;
   users: Array<User>;
-  localJorneys: Array<Jorney>;
+  localJorneys: Array<Jorney> = new Array<Jorney>();
 
   constructor(private usersService: UsersService,
               private offersService: OffersService,
@@ -143,6 +143,21 @@ export class AdminPageComponent implements OnInit {
     console.log('getHotels');
     this.offersService.getHotels().subscribe(hotelList => {
       this.hotels = hotelList;
+      for (let lista of this.hotels) {
+        for (let localJurney of lista.localJourneyList) {
+          this.localJorneys.push(localJurney);
+        }
+      }
+      console.log(this.localJorneys);
+      this.localJorneys.sort((a, b ) => {
+        if (a.id > b.id) {
+          return 1;
+        }
+        if (a.id < b.id) {
+          return -1;
+        }
+        return 0;
+      });
       this.getOffers();
     });
   }
@@ -151,7 +166,7 @@ export class AdminPageComponent implements OnInit {
     console.log('getOffers');
     this.offersService.getOffers().subscribe(offerList => {
       this.offers = offerList;
-      this.getLocalJorneys();
+      this.getUsers();
     });
   }
 
