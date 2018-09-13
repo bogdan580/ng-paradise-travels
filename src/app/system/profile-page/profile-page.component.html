@@ -91,41 +91,42 @@
     <div  *ngIf="isNull" class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> reservations.</span></div>
     <div *ngIf="!isNull">
       <div class="row" *ngFor="let item of this.reserver">
-      <div class="col" align="center">
+      <div class="col">
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
-          <h4 class="text-left card-title" align="center">Offer name: {{item.offer.name}}</h4>
+          <h4 class="text-left card-title" align="center"><b>Offer name: </b> {{item.offer.name}}</h4>
           <hr>
           <h5 class="text-left text-muted card-subtitle mb-2"></h5>
           <!--<h4>ID: {{item.id}}</h4>-->
-          <h4 *ngFor="let hotel of this.hotels">
-            <h4 *ngIf="item.offer.hotel == hotel.id">
-              Hotel name: {{hotel.name}}
+          <h5 *ngFor="let hotel of this.hotels">
+            <h5 *ngIf="item.offer.hotel == hotel.id">
+              <b>Hotel name: </b>{{hotel.name}}
               <br>
-              Stars: {{hotel.stars}}
-            </h4>
-          </h4>
-          <h4>People Count: {{item.pepoleCount}}</h4>
-          <h4>Total price: {{item.price}} PLN</h4>
-          <h4>Number of one person bed: {{item.numberOfOnePersonBed}}</h4>
-          <h4>Number of two person bed: {{item.numberOfTwoPersonBed}}</h4>
+             <b>Stars:</b> {{hotel.stars}}
+            </h5>
+          </h5>
+          <h5><b>People Count:</b> {{item.pepoleCount}}</h5>
+          <h5><b>Total price:</b> {{item.price}} PLN</h5>
+          <h5><b>Number of one person bed:</b> {{item.numberOfOnePersonBed}}</h5>
+          <h5><b>Number of two person bed:</b> {{item.numberOfTwoPersonBed}}</h5>
           <hr size="3px">
           <div  *ngIf="item.localJourneyList.length == 0" class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> journeys.</span></div>
-          <h3 *ngIf="item.localJourneyList.length > 0" align="center">Local Journeys</h3>
-          <h4 *ngFor="let i of item.localJourneyList">
-            <h4 *ngFor="let a of this.list">
-              <h4 *ngIf="i == a.id">
+          <h3 *ngIf="item.localJourneyList.length > 0">Local Journeys:</h3>
+          <h5 *ngFor="let i of item.localJourneyList">
+            <h5 *ngFor="let a of this.list">
+              <h5 *ngIf="i == a.id">
                 <hr>
-                <h4>Name: {{a.name}}</h4>
-                <h4>Description: {{a.description}}</h4>
-                <h4>Duration: {{a.durationTimeMin}} min</h4>
-                <h4>Price: {{a.price}} PLN</h4>
+                <h5><b>Name:</b> {{a.name}}</h5>
+                <h5><b>Description:</b> {{a.description}}</h5>
+                <h5><b>Duration:</b> {{a.durationTimeMin}} min</h5>
+                <h5><b>Price:</b> {{a.price}} PLN</h5>
                 <hr>
-              </h4>
-            </h4>
-          </h4>
-          <h4>Reservation data: {{item.dateFrom | date:"fullDate" }} - {{item.dateTo | date:"fullDate" }}</h4>
-          <h4 style="color:red;">Reservation status: {{item.reservationStatus}}</h4>
+              </h5>
+            </h5>
+          </h5>
+          <h5><b>Reservation data:</b> {{item.dateFrom | date:"fullDate" }} - {{item.dateTo | date:"fullDate" }}</h5>
+          <h5 *ngIf="item.reservationStatus == 'PAID'" style="color:green;"><b>Reservation status:</b> {{item.reservationStatus}}</h5>
+          <h5 *ngIf="item.reservationStatus == 'CANCELED'" style="color:red;"><b>Reservation status:</b> {{item.reservationStatus}}</h5>
           <!--<h4>Test: {{item.localJourneyList}}</h4>-->
           <div *ngIf="item.reservationStatus != 'CANCELED'">
           <a class="btn btn-info" href="{{invoiceAdress}}{{item.id}}/pdf" role="button">Generate invoice</a></div>
@@ -134,19 +135,4 @@
     </div>
   </div>
   </div>
-  <!--<h2 class="text-center">Local journeys</h2>-->
-  <!--<div class="row">-->
-    <!--<div class="col">-->
-      <!--<div class="card" style="margin-top:15px;margin-bottom:15px;">-->
-        <!--<div class="card-body">-->
-          <!--<h4 class="text-left card-title">{{reserv.offer.hotel.localJourneyList.name}}</h4>-->
-          <!--<hr>-->
-          <!--<h4>#id_reservation</h4>-->
-          <!--<h4>Language guide: {{reserv.offer.hotel.localJourneyList.languageGuide}}</h4>-->
-          <!--<h4>Duration time {{reserv.offer.hotel.localJourneyList.durationTimeMin}}</h4>-->
-          <!--<p>Description: {{reserv.offer.hotel.localJourneyList.description}}</p>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
 </div>
