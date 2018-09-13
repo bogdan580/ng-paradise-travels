@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {Jorney} from '../models/jorney.model';
 import {PojoNumberModel} from '../models/pojoModels/pojoNumber.model';
 import {PojoBooleanModel} from '../models/pojoModels/pojoBoolean.model';
+import {Offer} from '../models/offer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,4 +28,9 @@ export class ConfigService {
   deleteLJ(id: number): Observable<any> {
     return this.http.delete( this.getBeckendUrl() + `/local-journejs/` + id);
   }
+
+  addNewOffer(offer: Offer): Observable<any> {
+    return this.http.post<any>(this.getBeckendUrl() + `/offers`, offer);
+  }
+
 }

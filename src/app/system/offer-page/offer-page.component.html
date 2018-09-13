@@ -37,7 +37,7 @@
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body" style="margin-bottom:15px;">
           <h4 class="text-right card-title">{{oferty.pricePerDayPerPerson}} PLN</h4>
-          <p class="card-text" align="center">Address</p>
+          <p class="card-text">Address: {{oferty.hotel.address.address}}</p>
           <p class="card-text">Country: {{oferty.hotel.address.country}}</p>
           <p class="card-text">City: {{oferty.hotel.address.city}}</p>
           <p class="card-text">Street: {{oferty.hotel.address.address}}</p>
@@ -128,7 +128,7 @@
             </div>
             <h2>Total price: {{totalPrice()}} PLN</h2>
             <div class="form-group">
-              <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Buy Now</button>
+              <button type="submit" class="btn btn-block btn-primary" [disabled]="!isLogged || form.invalid">Buy Now</button>
             </div>
           </form>
         </div>
@@ -142,7 +142,7 @@
           <div class="row">
             <div class="col">
               <h4 class="text-center" style="margin-bottom:15px;">Find your flight</h4>
-              <div class='script' data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-params="colour:solar;fontColour:#000;buttonColour:dawn;buttonFontColour:#fff;" data-destination-name="'Barcelona'"></div>
+              <div class='script' data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-params="colour:white;fontColour:#000;buttonColour:dawn;buttonFontColour:#fff;" data-destination-name="''"></div>
             </div>
           </div>
           <div class="row justify-content-around">

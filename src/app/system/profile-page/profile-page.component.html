@@ -94,17 +94,38 @@
       <div class="col" align="center">
       <div class="card" style="margin-top:15px;margin-bottom:15px;">
         <div class="card-body">
-          <h4 class="text-left card-title">Offer name: {{item.offer.name}}</h4>
+          <h4 class="text-left card-title" align="center">Offer name: {{item.offer.name}}</h4>
           <hr>
           <h5 class="text-left text-muted card-subtitle mb-2"></h5>
           <!--<h4>ID: {{item.id}}</h4>-->
-          <h4>Hotel name: {{item.offer.hotel.name}}</h4>
-          <h4>Number of stars: {{item.offer.hotel.stars}}</h4>
+          <h4 *ngFor="let hotel of this.hotels">
+            <h4 *ngIf="item.offer.hotel == hotel.id">
+              Hotel name: {{hotel.name}}
+              <br>
+              Stars: {{hotel.stars}}
+            </h4>
+          </h4>
           <h4>People Count: {{item.pepoleCount}}</h4>
-          <h4>Total price: {{item.price}} $</h4>
-          <h4>Number of one person bed: {{item.numberOfOnePersonBed}}, Number of two person bed: {{item.numberOfTwoPersonBed}}</h4>
+          <h4>Total price: {{item.price}} PLN</h4>
+          <h4>Number of one person bed: {{item.numberOfOnePersonBed}}</h4>
+          <h4>Number of two person bed: {{item.numberOfTwoPersonBed}}</h4>
+          <div  *ngIf="item.localJourneyList.length == 0" class="alert alert-danger" role="alert"><span><strong>No&nbsp;available</strong> journeys.</span></div>
+          <h3 *ngIf="item.localJourneyList.length > 0" align="center">Local Journeys</h3>
+          <h4 *ngFor="let i of item.localJourneyList">
+            <h4 *ngFor="let a of this.list">
+              <h4 *ngIf="i == a.id">
+                <hr>
+                <h4>Name: {{a.name}}</h4>
+                <h4>Description: {{a.description}}</h4>
+                <h4>Duration: {{a.durationTimeMin}} min</h4>
+                <h4>Price: {{a.price}} PLN</h4>
+                <hr>
+              </h4>
+            </h4>
+          </h4>
           <h4>Reservation data: {{item.dateFrom | date:"fullDate" }} - {{item.dateTo | date:"fullDate" }}</h4>
           <h4>Reservation status: {{item.reservationStatus}}</h4>
+          <!--<h4>Test: {{item.localJourneyList}}</h4>-->
           <a class="btn btn-info" href="{{invoiceAdress}}{{item.id}}/pdf" role="button">Generate invoice</a>
         </div>
       </div>

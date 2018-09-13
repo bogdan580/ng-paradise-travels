@@ -54,7 +54,7 @@ export class AdminPageComponent implements OnInit {
         });
       }
 
-        this.getHotels();
+      this.getHotels();
     });
   }
 
@@ -78,8 +78,8 @@ export class AdminPageComponent implements OnInit {
     this.form = new FormGroup({
       'login': new FormControl(null, [Validators.required], this.forbiddenLogins.bind(this)),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      'confirmPassword': new FormControl(null, [Validators.required],  this.notSamePasswords.bind(this)),
-      'email': new FormControl(null, [Validators.required, Validators.email],  this.forbiddenEmails.bind(this)),
+      'confirmPassword': new FormControl(null, [Validators.required], this.notSamePasswords.bind(this)),
+      'email': new FormControl(null, [Validators.required, Validators.email], this.forbiddenEmails.bind(this)),
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
       'address': new FormControl(null, [Validators.required]),
@@ -113,6 +113,10 @@ export class AdminPageComponent implements OnInit {
       'dateTo': new FormControl(null, [Validators.required]),
       'promoted': new FormControl(null, [Validators.required]),
       'shortDesc': new FormControl(null, [Validators.required]),
+      'picture1': new FormControl(null, [Validators.required]),
+      'picture2': new FormControl(null, [Validators.required]),
+      'picture3': new FormControl(null, [Validators.required]),
+      'picture4': new FormControl(null, [Validators.required]),
       'desc': new FormControl(null, [Validators.required]),
       'pricePerDay': new FormControl(null, [Validators.required])
     });
@@ -182,12 +186,21 @@ export class AdminPageComponent implements OnInit {
   }
 
   onSubmitAddOf() {
-    const {nameHotel, descriptionHotel, starsHotel, street, postal, city, region, country, offerName, dateFrom,
-            dateTo, promoted, shortDesc, desc, pricePerDay} = this.formAddOf.value;
+    const {
+      nameHotel, descriptionHotel, starsHotel, street, postal, city, region, country, offerName, dateFrom,
+      dateTo, promoted, shortDesc, picture1, picture2, picture3, picture4, desc, pricePerDay
+    } = this.formAddOf.value;
     const address = new Address(street, postal, city, region, country);
-    const hotel = new Hotel(null, nameHotel, descriptionHotel, starsHotel, address);
-    const offer = new Offer( hotel, dateFrom, dateTo, offerName, promoted, desc, shortDesc, [ ], pricePerDay );
+    const offer = new Offer({name: nameHotel, description: descriptionHotel, stars: starsHotel, address: address},
+      dateFrom, dateTo, offerName, promoted, desc, shortDesc, [picture1, picture2, picture3, picture4], pricePerDay);
     console.log(`Json: ` + JSON.stringify(offer).toString());
+/*    this.configService.addNewOffer(offer).subscribe(() => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    });*/
   }
 
   onSubmitAddLJ() {
@@ -195,13 +208,13 @@ export class AdminPageComponent implements OnInit {
     const hotel = new Hotel(idHtl);
     const localJorney = new Jorney(jorneyName, description, price, durationTime, languageGuide, hotel);
     console.log(`Json: ` + JSON.stringify(localJorney).toString());
-    this.configService.createNewLJ(localJorney).subscribe( () => {
-        this.router.navigate(['/admin'], {
-          queryParams: {
-            changeSave: true
-          }
-        });
-    }, error1 => {
+    this.configService.createNewLJ(localJorney).subscribe(() => {
+      this.router.navigate(['/admin'], {
+        queryParams: {
+          changeSave: true
+        }
+      });
+    }, error => {
       this.router.navigate(['/admin'], {
         queryParams: {
           changeSave: false
@@ -213,7 +226,7 @@ export class AdminPageComponent implements OnInit {
   onSubmitDelLocalJorney() {
     const {idJorney} = this.formDelJorney.value;
     console.log(`del local jorney ` + idJorney);
-    this.configService.deleteLJ(idJorney).subscribe( () => {
+    this.configService.deleteLJ(idJorney).subscribe(() => {
       this.router.navigate(['/admin'], {
         queryParams: {
           changeSave: true
@@ -230,7 +243,7 @@ export class AdminPageComponent implements OnInit {
   onSubmitDelUsr() {
     const {idUser} = this.formDelUsr.value;
     console.log(`del user ` + idUser);
-    this.usersService.deleteUser(idUser).subscribe( () => {
+    this.usersService.deleteUser(idUser).subscribe(() => {
       this.router.navigate(['/admin'], {
         queryParams: {
           changeSave: true
@@ -239,11 +252,8 @@ export class AdminPageComponent implements OnInit {
     });
   }
 
-
-
-
-  forbiddenLogins (control: FormControl): Promise<any> {
-    return new Promise((resolve, reject)  => {
+  forbiddenLogins(control: FormControl): Promise<any> {
+    return new Promise((resolve, reject) => {
       this.usersService.existUserLogin(control.value)
         .subscribe((obj: PojoBooleanModel) => {
           console.log(obj.value);
@@ -257,7 +267,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   forbiddenEmails(control: FormControl): Promise<any> {
-    return new Promise((resolve, reject)  => {
+    return new Promise((resolve, reject) => {
       this.usersService.existUserEmail(control.value)
         .subscribe((obj: PojoBooleanModel) => {
           console.log(obj.value);
@@ -271,7 +281,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   notSamePasswords(control: FormControl): Promise<any> {
-    return new Promise((resolve, reject)  => {
+    return new Promise((resolve, reject) => {
       if (control.value === this.form.value.password) {
         resolve(null);
       } else {
